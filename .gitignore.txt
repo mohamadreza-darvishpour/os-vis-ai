@@ -1,5 +1,0 @@
-!/venv.os
-
-!/venv.ai
-
-!/venv.vis
