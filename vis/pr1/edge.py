@@ -18,7 +18,7 @@ def enhance_edges(image):
     return sharpened_image
 
 # Example usage:
-i1 = "pr1/images/p1.png" 
+i1 = "pr1/images/q_1.png" 
 i2 = "pr1/images/p2.jpg" 
 i3 = "pr1/images/p3.jpg" 
 
@@ -27,10 +27,6 @@ def show_process(first_image):
     image_path = first_image
     first_pic = cv2.imread(image_path)
     print('\n\n\ndone\n\n\n')
-
-    # Remove salt and pepper noise
-    noise_reduced_image = remove_salt_pepper_noise(image_path)
-
     # Enhance edges in the noise-reduced image
     edge_enhanced_image = enhance_edges(noise_reduced_image)
 
@@ -43,7 +39,6 @@ def show_process(first_image):
 
 
 show_process(i1)
-show_process(i2)
-show_process(i3)    #not gray scale
+
 
 
