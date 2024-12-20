@@ -1,0 +1,60 @@
+
+
+write code in any file like example.vhd 
+
+open or make new vhd file by 'file' part in modelsim . 
+
+
+its better to make project in modelsim then  add file in the project path . 
+** when make new project should notice to ***** library name we choose or write **** by default is 'work' 
+i change it to work hard . 
+
+then choose our file and click on compile button . 
+
+#######\
+to make modelsim to show output tto us  we should 
+click(right) on our project windows
+choose project setting 
+enable tick of 'display compiler output ' 
+
+#############33333
+
+to simulating : 
+
+click on simulate part . 
+then choose library that we made when make project . 
+then compile the code . 
+and run it . to see the output . 
+
+
+################33 
+
+when we start new project we have a empty prroject dir . 
+then  with new file we add the  new file tto project . 
+when go to project window 
+here we can manage files . 
+make files . 
+then write code . 
+then compile . 
+after that  simulate . 
+choose correct file or module name . ********* 
+then click on run . 
+click on  view to show the wave part to show the changes of the wave that we choose . 
+then run . 
+##########################333333
+
+
+sayed to chatgpt: 
+write a traffic light code . that we have 2 diferent traffic light as light1 and light2 ,
+ any light has 3 colors yellow, green, red . with 6 port as 0 and 1 we want to control 2 traffic light .
+  port G1 for green light of light1 , G2 for green light of light2 , port R1 for red light of light1 ,
+   port R2 for red light of light2 , prot Y1 for yellow light of light 1 , port Y2 for yellow light of light2 ,
+    from sec=0 to sec=2 do(Y1=1 , Y2=1 ,G1=1 ,G2=0 ,R1=0 ,R2=1 ) , then from sec=2 to sec=30 do(Y1=0 , Y2=0 ,G1=0 ,G2=1 ,R1=1 ,R2=0 ) ,
+     then from sec=30 to sec=32 do(Y1=1 , Y2=1 ,G1=0 ,G2=1 ,R1=1 ,R2=0 ) , then from sec=32 to sec=60 do(Y1=0 , Y2=0 ,G1=1 ,G2=0 ,R1=0 ,R2=1 ) ,
+      and every 60 seconds repeat this code . 
+
+
+
+
+
+
