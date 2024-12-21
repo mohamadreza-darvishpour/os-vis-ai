@@ -1,0 +1,39 @@
+
+
+
+   ****   active hdl   **** 
+
+
+
+write a code for fpga , vhdl . 
+simulating and show the wave of
+ ports by activehdl program. the code
+  for 2 port as A , B and every one 
+  second change a to 1 and b to 0 and reverse.
+   write any thing need  to run or simulating and 
+   showing the wave in active hdl. describe code 
+   completely. write any different code needed like 
+   test code , wave code , main code . 
+then describe completely from making new workspace and 
+even clicks on program . 
+
+______________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
