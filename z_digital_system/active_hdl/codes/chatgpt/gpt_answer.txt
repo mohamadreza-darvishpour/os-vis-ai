@@ -1,0 +1,158 @@
+Here is a comprehensive VHDL solution for simulating a **two-traffic-light controller** with the specified behavior. The solution includes the **main module**, **testbench**, and **step-by-step guide** to run it in Active-HDL.
+
+---
+
+### **Main VHDL Code for Traffic Light Controller**
+
+```vhdl
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity TrafficLightController is
+    Port (
+        Y1 : out STD_LOGIC; -- First yellow light
+        Y2 : out STD_LOGIC; -- Second yellow light
+        G1 : out STD_LOGIC; -- First green light
+        G2 : out STD_LOGIC; -- Second green light
+        R1 : out STD_LOGIC; -- First red light
+        R2 : out STD_LOGIC; -- Second red light
+        clk : in STD_LOGIC  -- Clock input
+    );
+end TrafficLightController;
+
+architecture Behavioral of TrafficLightController is
+    signal counter : INTEGER := 0; -- Internal time counter
+begin
+    -- Process to manage the traffic light sequence
+    TrafficLight_Process: process(clk)
+    begin
+        if rising_edge(clk) then
+            -- Increment counter with each clock cycle
+            counter <= (counter + 1) mod 60; -- 60ns cycle
+
+            -- Set output based on counter value
+            if counter >= 0 and counter < 2 then
+                Y1 <= '1'; Y2 <= '1'; G1 <= '1'; G2 <= '0'; R1 <= '0'; R2 <= '1';
+            elsif counter >= 2 and counter < 30 then
+                Y1 <= '0'; Y2 <= '0'; G1 <= '0'; G2 <= '1'; R1 <= '1'; R2 <= '0';
+            elsif counter >= 30 and counter < 32 then
+                Y1 <= '1'; Y2 <= '1'; G1 <= '0'; G2 <= '1'; R1 <= '1'; R2 <= '0';
+            elsif counter >= 32 and counter < 60 then
+                Y1 <= '0'; Y2 <= '0'; G1 <= '1'; G2 <= '0'; R1 <= '0'; R2 <= '1';
+            end if;
+        end if;
+    end process TrafficLight_Process;
+end Behavioral;
+```
+
+---
+
+### **Testbench for Simulation**
+
+```vhdl
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity TrafficLightController_tb is
+end TrafficLightController_tb;
+
+architecture Behavioral of TrafficLightController_tb is
+    -- Component declaration for the main module
+    component TrafficLightController
+        Port (
+            Y1 : out STD_LOGIC;
+            Y2 : out STD_LOGIC;
+            G1 : out STD_LOGIC;
+            G2 : out STD_LOGIC;
+            R1 : out STD_LOGIC;
+            R2 : out STD_LOGIC;
+            clk : in STD_LOGIC
+        );
+    end component;
+
+    -- Signals to connect to the main module
+    signal Y1 : STD_LOGIC;
+    signal Y2 : STD_LOGIC;
+    signal G1 : STD_LOGIC;
+    signal G2 : STD_LOGIC;
+    signal R1 : STD_LOGIC;
+    signal R2 : STD_LOGIC;
+    signal clk : STD_LOGIC := '0';
+
+begin
+    -- Instantiate the main module
+    UUT: TrafficLightController
+        Port map (
+            Y1 => Y1,
+            Y2 => Y2,
+            G1 => G1,
+            G2 => G2,
+            R1 => R1,
+            R2 => R2,
+            clk => clk
+        );
+
+    -- Clock generation process
+    Clock_Process: process
+    begin
+        while true loop
+            clk <= '0';
+            wait for 1 ns; -- 1ns clock period
+            clk <= '1';
+            wait for 1 ns;
+        end loop;
+    end process Clock_Process;
+
+    -- Simulation time control
+    Simulation_Process: process
+    begin
+        wait for 120 ns; -- Run simulation for 120ns (2 cycles)
+        wait;
+    end process Simulation_Process;
+end Behavioral;
+```
+
+---
+
+### **Step-by-Step Guide to Run in Active-HDL**
+
+#### **1. Create a New Workspace**
+1. Open **Active-HDL**.
+2. Go to **File > New > Workspace**.
+3. Name the workspace (e.g., `TrafficLightController_Workspace`) and choose the directory.
+4. Select the **VHDL** design type and click **Next**.
+5. Finish the setup.
+
+#### **2. Add the VHDL Files**
+1. Right-click on the workspace in the **Design Browser**.
+2. Select **Add New File** and create two files:
+   - **TrafficLightController.vhd**: Paste the main module code.
+   - **TrafficLightController_tb.vhd**: Paste the testbench code.
+
+#### **3. Compile the Design**
+1. Right-click on the **TrafficLightController_tb** file in the **Design Browser**.
+2. Select **Compile All**.
+3. Ensure no errors appear in the **Transcript Window**.
+
+#### **4. Simulate the Design**
+1. Right-click on **TrafficLightController_tb** in the **Design Browser**.
+2. Select **Simulate** to open the simulation environment.
+
+#### **5. Add Signals to the Waveform Viewer**
+1. In the simulation window, locate the signals `Y1`, `Y2`, `G1`, `G2`, `R1`, and `R2`.
+2. Drag and drop these signals into the **Waveform Viewer**.
+
+#### **6. Run the Simulation**
+1. Click on the **Run** button or press **F5**.
+2. Set the simulation runtime to **120ns** to observe two complete cycles.
+
+#### **7. Analyze the Waveforms**
+- Verify that the output signals match the timing specifications:
+  - **0–2ns**: Y1=1, Y2=1, G1=1, G2=0, R1=0, R2=1
+  - **2–30ns**: Y1=0, Y2=0, G1=0, G2=1, R1=1, R2=0
+  - **30–32ns**: Y1=1, Y2=1, G1=0, G2=1, R1=1, R2=0
+  - **32–60ns**: Y1=0, Y2=0, G1=1, G2=0, R1=0, R2=1
+
+---
+
+By following these steps, you can simulate the traffic light controller and visualize its behavior in Active-HDL.

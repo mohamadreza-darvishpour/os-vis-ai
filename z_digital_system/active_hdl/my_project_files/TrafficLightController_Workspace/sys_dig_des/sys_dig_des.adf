@@ -19,15 +19,9 @@ FAMILY=
 [Files]
 /TrafficLightController.vhd=-1
 /TrafficLightController_tb.vhd=-1
-/TrafficLightController.vhd=-1
-/TrafficLightController.vhd=-1
-/TrafficLightController.vhd=-1
 [Files.Data]
 .\src\TrafficLightController.vhd=VHDL Source Code
 .\src\TrafficLightController_tb.vhd=VHDL Source Code
-.\src\TrafficLightController.vhd=VHDL Source Code
-.\src\TrafficLightController.vhd=VHDL Source Code
-.\src\TrafficLightController.vhd=VHDL Source Code
 [folders]
 name0=ALINT-PRO Workspaces
 directory0=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
@@ -67,3 +61,7 @@ directory11=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_h
 extension11=asdb;awc;asdbc;asdbe
 [ORDER]
 Synchronize=0
+[HierarchyViewer]
+HierarchyInformation=trafficlightcontroller_tb|Behavioral|0
+ShowHide=ShowTopLevel
+Selected=
