@@ -21,6 +21,105 @@ ______________________________________
 
 
 
+workspace : manage several projects symultaniously. 
+
+design : in active hdl means collection of source files . 
+
+
+
+
+
+_______________________*********************
+start 
+
+--make new workspace : 
+file > new > workspace 
+
+--then in new pop up page 
+--need work space name 
+-- put tick on new design buttom to add new design . 
+
+--then in new dessign wizard page 
+--click on first : add empty design 
+
+--then 
+--in property page : 
+-- better to leave it as it is . but : 
+block diagram config : default hdl language 
+default hdl langu : vhdl 
+--target technology >>>   as in videos to learning 
+vendor : intel 
+technology : cyblonelvgx 
+and next . 
+--then 
+-- in new design wizard add name  and next 
+--then  check the specification and next . 
+--finish making new workspace . : 
+______________________________
+design in active hdl saved in .adf format . 
+---------------
+***   making new vhdl file to write program . 
+in design part > add new file 
+--then in pop up page we have 2 tab ( empty file , wizard) 
+--better to use 'wizard' because autoam... make the first source file. 
+--go to 'wizard' 
+--click on make vhdl source file . 
+--then in new source file wizard : put tick on new pop up page : 
+--that pop up page put tick on ' add the generated file to the design
+next. 
+--then 
+--add just name to the new pop up page and 
+next 
+
+--then 
+--in ports pop up page 
+add the input,output,... and all different ports. 
+--then 
+finish 
+___________________________
+
+active design 
+
+--when we work with multiple design we should 'active' current design 
+to simulate,compile and ... 
+
+________________________________
+we can export out active hdl file as an archive  , pdf , html ....
+---___________________________
+
+
+active hdl example design files . 
+help > example design files . 
+-----------
+code browser(put in about  above 2th navbar) : show structure of code ....
+_----------
+
+enable debugging when compilation : 
+tools > settings or preferences > compilation > vhdl > checking enable debugging. 
+
+_------------------
+
+enable errors 
+tools > preferences > environment > console > check (error , warning ) 
+
+
+---------------
+in order to simulation 
+enable access to design object settings ...
+
+tools > preferences > simulation > access to design object setting > check access ( read , write ,,.... (box ) )
+
+-------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 

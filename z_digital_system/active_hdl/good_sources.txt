@@ -9,8 +9,34 @@ https://www.youtube.com/watch?v=-CJIQd2Evmk&list=PLJy5kvePad5fRRlNGsVQJLseU51lVc
 
 
 
+https://electrovolt.ir/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%D9%BE%D8%B1%D9%88%DA%98%D9%87-%DA%86%D8%B1%D8%A7%D8%BA-%D8%B1%D8%A7%D9%87%D9%86%D9%85%D8%A7%DB%8C%DB%8C-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%AA%D9%81%D8%A7%D8%AF%D9%87/
 
 
+
+
+
+
+
+
+write a code for vhdl language to run with activehdl programm. 
+the code is 2 traffic light controller that has output port as 
+output ports : 
+(
+Y1 : first yellow light ,
+Y2 : second yellow light,
+G1 : first green light ,
+G2 : second green light,
+R1 : first red light ,
+R2 : second red light
+)
+and any input ports needed.  
+to manage light 
+from time(ns 0 to 2) the port is : (Y1:1  , Y2:1   ,  G1:1   , G2: 0   , R1:0    , R2:1     ),
+from time(ns 2 to 30) the port is : (Y1:0  , Y2:0   ,  G1:0   , G2:1    , R1:1    , R2:0     ),
+from time(ns 30 to 32) the port is : (Y1:1  , Y2:1  ,  G1:0   , G2:1   , R1:1    , R2:0     ),
+from time(ns 32 to 60) the port is : (Y1:0  , Y2:0   ,  G1:1   , G2:0    , R1:0    , R2:1     ),
+then repeat this cycle as it is every 60 nano second.
+make all vhdl file code needed like test and main all of them . 
 
 
 
