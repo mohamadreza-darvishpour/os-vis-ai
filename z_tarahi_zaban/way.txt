@@ -1,12 +1,29 @@
-tarahi zaban barnamenevisi project. 
-
-
-
+i write it with 
+***************************          perl         ********************************
 بازی مار و پله 
 
 
+write a graphical game with perl language . 
+write a game that 2 bodies can do . 
+game  is  'the snake and ladder '
+board has 100 square steps in 10*10 board. 
+any steps show its number , snake if has snake in that , or latter if has latter in that . 
+for snake we use sign : &(number) like &(3) . &(3) means if achieve here snake bites and go to step 3 . 
+for latter we use sign :  H(number)  like H(38) . H(38) means if achieve here latter put you on step 38. 
+but some condition we have . 
+we have a dice that get random numbers between[1,2,3,4,5,6] 
+we have 2 bodies for gaming. 
+condition 1 : to start any body need the dice with number 6 to enter the game . 
+condition 2 : dice with one button controls and one time for first body , one time for second body . 
+condition 3 : the time of current body not changing till the dice show 6 . just 6 can repeat time for current body. 
+condition 4 : when a body in exact step like 23 and second body achieve there , first body go out of board and should start like first move with dice 6 .
+condition 6 : when a body achieve to end 6 step and the dice number cant end move and get the body more of 100 any changes didn't happen and time changes to another one. 
+condition 7 : when a body achieve to step with latter or snake a pop up window show and ask a question . if answer is correct snake not take you back or latter will move you forward. if answer is wrong snake will move you back and latter didn't move you. 
+questions for condition 7 : any step you in the question is 'are you(body_name) in step number x? ' and answer is yes or no with click  in pop up windows. example: are you(john) in step number 9? 
 
-
-
-
+condition 8 : in the above of the board we need 2 box for names . that show 2 different color to them . 
+condition 9 : show 2 different color 'aqua' and 'light green' for first and second body. 
+conditino 10 : below of the board show the dice box with name of who is his time and message like . its 'body_name' time to dicing.  
+condition 11 : buttom to start over with delete last game . 
+condition 12 : pop up page to show wo win when ant one win. 
 
