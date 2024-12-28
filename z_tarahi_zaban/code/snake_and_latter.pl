@@ -11,7 +11,7 @@ my %ladders = (3 => 38, 8 => 30, 28 => 84, 58 => 77, 75 => 86, 80 => 99);
 
 # Player details
 my @players = (
-    { name => 'Player 1', color => 'aqua', pos => 0, active => 0 },
+    { name => 'Player 1', color => 'blue', pos => 0, active => 0 },
     { name => 'Player 2', color => 'light green', pos => 0, active => 0 }
 );
 my $current_player = 0;
