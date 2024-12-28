@@ -27,3 +27,16 @@ conditino 10 : below of the board show the dice box with name of who is his time
 condition 11 : buttom to start over with delete last game . 
 condition 12 : pop up page to show wo win when ant one win. 
 
+
+
+
+_______________________
+
+how do i correct  cpan and perl . 
+with make in more priority in environment path of windows. 
+to use strawberry files 'bin' 
+______________________________
+
+
+
+
