@@ -5,6 +5,7 @@ i write it with
 
 write a graphical game with perl language . 
 write a game that 2 bodies can do . 
+write it with class and objects. 
 game  is  'the snake and ladder '
 board has 100 square steps in 10*10 board. 
 any steps show its number , snake if has snake in that , or latter if has latter in that . 
@@ -22,10 +23,11 @@ condition 7 : when a body achieve to step with latter or snake a pop up window s
 questions for condition 7 : any step you in the question is 'are you(body_name) in step number x? ' and answer is yes or no with click  in pop up windows. example: are you(john) in step number 9? 
 
 condition 8 : in the above of the board we need 2 box for names . that show 2 different color to them . 
-condition 9 : show 2 different color 'aqua' and 'light green' for first and second body. 
+condition 9 : show 2 different color dark green and 'blue' for first and second body. 
 conditino 10 : below of the board show the dice box with name of who is his time and message like . its 'body_name' time to dicing.  
 condition 11 : buttom to start over with delete last game . 
 condition 12 : pop up page to show wo win when ant one win. 
+condition 13 : the dice number show in squre and when changing show 3 dot for .5 second then show new amount with the color of players time. 
 
 
 
