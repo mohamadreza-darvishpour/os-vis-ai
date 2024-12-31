@@ -40,13 +40,16 @@ import numpy as np
 
 
 def lines_of_input_file(file_path):
-    '''get the input file path and return (numpy) matris'''
+    '''get the input file path and return list of object like: 
+    [['W'], ['68'], ['p2:6', '8', '9', '19', '29', '39'], ['p2:9', '8', '9', '19'], ['p2:6', '8', '9', '19', '29', '39']]
+    '''
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
             for index in range(len(lines)):
-                lines[index]  = lines[index].strip().split(',')
-        return lines
+                lines[index]  = (lines[index].strip().replace(' ' ,'').replace(',',' ').strip().split())
+        cleaned = [item for item in lines if len(item) !=0]
+        return  cleaned
 
     except FileNotFoundError:
         print(f"\nError: The file at {file_path} was not found.\n")
@@ -76,7 +79,7 @@ def make_out_file(p_col_dict:dict):
 
 
 print(lines_of_input_file(test_path))
-# make_out_file(test_dict)
+make_out_file(test_dict)
 
 
 
