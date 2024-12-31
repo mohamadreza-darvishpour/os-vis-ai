@@ -51,6 +51,22 @@ def make_out_file(p_col_dict:dict):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 print(lines_of_input_file(test_path))
 make_out_file(test_dict)
 

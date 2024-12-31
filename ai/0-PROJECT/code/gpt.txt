@@ -1,0 +1,16 @@
+
+
+
+here exists 
+dijestency matris for points of a graph that 
+any neighbor points must has the different
+ color. wright a python module to do this 
+ problem by ids (iterative deepening search). input file
+  is like n point dijestancy matris.
+
+
+
+
+
+
+
