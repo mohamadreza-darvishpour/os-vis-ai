@@ -1,17 +1,5 @@
-'''
-input file structure 
-
-1 0 0 1 0 1 1 1 1 0
-...
-1 ...   ....    ..1
-
-
-'''
-test_path  = './code/test.txt'
-test_dict = {1:'red' , 2:'blue' , 3:'black'}
-#imports
 import numpy as np
-
+import sys
 
 
 
@@ -21,8 +9,11 @@ def lines_of_input_file(file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
             for index in range(len(lines)):
-                lines[index]  = np.array(lines[index].strip().split() , dtype=int)
-        return np.array(lines)
+                lines[index]  = lines[index].strip().split()
+            for time in range(60):
+                try:lines.remove([]) 
+                except: pass
+        return np.array(lines , dtype=int)
 
     except FileNotFoundError:
         print(f"\nError: The file at {file_path} was not found.\n")
@@ -32,23 +23,16 @@ def lines_of_input_file(file_path):
         return''
 
 
-def make_out_file(p_col_dict:dict):
-    # try :
-        result = ''
+def make_out_file(result:str):
+    try :
         file_name = 'output.txt'
-        for key , color in p_col_dict.items():
-            result += f'{key}={color},'
-        with open(f'./code/{file_name}', 'w', encoding='utf-8') as file:
+        with open(f'{file_name}', 'w', encoding='utf-8') as file:
             file.write(result)
-        print(f"\nFile '{file_name}' created successfully with content: {result}\n")
+        print(f"result : {result}\nFile '{file_name}' created successfully.\n")
 
-    # except Exception as e : 
-    #     print(f'\nerror making output file. \n')
+    except Exception as e : 
+        print(f'\nerror making output file. \n')
 
-
-
-import sys 
-import numpy as np
 
 
 class color_points_ids: 
@@ -110,39 +94,32 @@ class color_points_ids:
 
 
 
-adjacency_mat_ex = [
-    [0 ,1 ,1 ,0 ,1 ,0 ,1],
-    [1 ,0 ,1 ,0 ,0 ,0 ,0],
-    [1 ,1 ,0 ,0 ,1 ,0 ,1],
-    [0 ,0 ,0 ,0 ,0 ,1 ,0],
-    [1 ,0 ,1 ,0 ,0 ,0 ,0],
-    [0 ,0 ,0 ,1 ,0 ,0 ,0],
-    [1 ,0 ,1 ,0 ,0 ,0 ,0],
-]
-
-
-obj  = color_points_ids(adjacency_mat_ex , 3)
-obj.ids_coloring()
-result = obj.color_result() 
-print(result)
 
 
 
 
+def main():
+    try:
+        if len(sys.argv) != 2:
+            print("Usage: python myfile.py <input.txt> (adjacency matrix)")
+            sys.exit(1)
 
+        input_file_path = sys.argv[1]
+        input_adjacency = lines_of_input_file(input_file_path)
+        print(input_adjacency,'\n')
+        num_type_color = 4
+        ids_obj = color_points_ids(adjacency_mat=input_adjacency , num_colors=num_type_color)
+        ids_obj.ids_coloring() 
+        out_put_text = ids_obj.color_result()
+        make_out_file(out_put_text)
+        
+        print('\n\n\t<<done>>')
+    
+    except:
+        print('\n\n\t\t\t<<error>>')
 
-
-# print(lines_of_input_file(test_path))
-# make_out_file(test_dict)
-
-
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    main()
 
 
 

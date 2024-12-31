@@ -1,1 +1,1 @@
-1=red,2=blue,3=black,
+0=red,1=green,2=red,3=blue,4=red,5=red,6=green,7=blue,8=green,9=red,10=blue,
