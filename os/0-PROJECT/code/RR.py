@@ -49,6 +49,17 @@ def lines_of_input_file(file_path):
             for index in range(len(lines)):
                 lines[index]  = (lines[index].strip().replace(' ' ,'').replace(',',' ').strip().split())
         cleaned = [item for item in lines if len(item) !=0]
+        for x in range(len(cleaned)): 
+            for y in range(len(cleaned[x])) : 
+                if( not( 
+                        'p' in cleaned[x][y] or
+                        'P' in cleaned[x][y] or
+                        'w' in cleaned[x][y] or
+                        'W' in cleaned[x][y] 
+                        )):
+                    cleaned[x][y] = int(cleaned[x][y])
+                
+        # print('\ncleaned : ', cleaned , '\n')
         return  cleaned
 
     except FileNotFoundError:
@@ -74,12 +85,42 @@ def make_out_file(p_col_dict:dict):
 
 
 
+class RR:
+    def __init__(self , process_list:list):
+        self.p_num = 0          #process amount
+        self.data_dict = {}
+        self.data_dict['processes'] = {}
+        for ind in range(len(process_list)):
+            if(ind == 0):
+                self.data_dict['opt_base'] = process_list[ind][0]   #given amount base to use in order to optimize.(w-r-t)
+            elif (ind == 1):
+                self.data_dict['dl'] = int(process_list[ind][0])     # given dispatcher latency #int may be got problem.
+            else:
+                self.p_num +=1 
+                proc_number = int((process_list[ind][0].replace('p','').split(':'))[0]  )   #process number
+                proc_arrive = int((process_list[ind][0].replace('p','').split(':'))[1] )    #process arrival
+                del process_list[ind][0]
+                self.data_dict['processes'][proc_number] = {
+                    'bursts' :    process_list[ind] ,
+                    'arrive' : proc_arrive ,
+                }
+                # for p_num , p_data in self.data_dict[processes].items() :
+                    
+        self.data_dict['p_number'] = self.p_num
+        print('\n','_'*10,'\n' , self.data_dict ,'\n','_'*10, '8383\n')
 
 
 
 
-print(lines_of_input_file(test_path))
-make_out_file(test_dict)
+
+
+
+proc_list = lines_of_input_file(test_path)
+obj = RR(process_list=proc_list)
+
+
+
+# make_out_file(test_dict)
 
 
 
