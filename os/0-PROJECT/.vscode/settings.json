@@ -1,4 +1,16 @@
 {
     "indentRainbow.indicatorStyle": "light",
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+    "editor.guides.highlightActiveIndentation": false,
+    "editor.guides.indentation": false,
+    "editor.wrappingIndent": "none",
+    "workbench.tree.renderIndentGuides": "none",
+    "editor.renderWhitespace": "none",
+    "editor.detectIndentation": false,
+    "editor.autoIndent": "none",
+    "python.analysis.autoIndent": false,
+    "editor.insertSpaces": true,
+    "editor.experimentalWhitespaceRendering": "off",
+    "editor.smartSelect.selectLeadingAndTrailingWhitespace": false,
+    "editor.trimAutoWhitespace": false
 }

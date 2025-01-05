@@ -105,14 +105,9 @@ class RR:
                     'arrive' : proc_arrive ,
                 }
                 # for p_num , p_data in self.data_dict[processes].items() :
-                    
+
         self.data_dict['p_number'] = self.p_num
-        print('\n','_'*10,'\n' , self.data_dict ,'\n','_'*10, '8383\n')
-
-
-
-
-
+        print(  '\n','_'*10,'\n' , self.data_dict , '\n'    ,   '_'*10  , '8383\n'  )
 
 
 proc_list = lines_of_input_file(test_path)

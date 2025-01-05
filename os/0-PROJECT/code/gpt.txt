@@ -1,0 +1,75 @@
+
+
+we want to use round robin algorithms to find best optimized quantum 
+to achieve the minimom(average turn around time or average waiting time or average response time) 
+the input file is like below : 
+optimization_base= w    # this amount has 3 value as w:average waiting time , t:average turn around time , r: average response time , 
+process_arrival = [ 2 ,7 , 3 , 4 , 9 , 5]  #(arrival of p1 = process_arrival[0] , p2_arrival=process_arrival[1] and ....)
+process_burst_list = [
+    [ 2 ,3,5 ,6 ,9 ],
+    [ 8 , 2 , 4 , 9 , 1 ,  4  ], #1th index is cpu burst and 2th index is io burst and 3th is cpu burst again and .... , it changes one by one with cpu and io in any process. 
+    [ 2 , 4  ],
+    [ 3,4,5,6,7,8,12 , 18 , 18 , 19 , 23 ],
+    [ 8,12 , 18 ],
+    [ 18 , 19  ],
+]    # index(0) is cpu/io burst of p1 , index(1) is for p2 , index( 2 ) is for p3 and .....
+<<end of output >>. 
+so the number of process not specified it means we should handle unknown amount of process. 
+and 
+the number of cpu_burst and i_o burst not specified too . it means for any process we may have different amount of cpu , io burst. 
+
+
+then out_put must be like below : 
+utilized quantum: 9
+gantt_chart_time_dividing = 2 or any thing. 
+gantt chart : p3 , p7 , p3 , p2 , .......
+cput utilization : 20% 
+average response time : 38 
+average turn arount time : 99
+average waiting time : 20
+<<end of output message in terminal >> 
+
+its important to handle when first cpu-burst ends delete from  ready qeueu and go to io qeueu  and after io again take it too ready and ....
+the key point is quantum time should test between amount of (1) to (max cpu burst time of processes) . 
+and the more important key is find the best quantum amount based on one of  ('w' or 'r' or 't') sayed in the input file. 
+write any formula in any action in the code in the comment . any little thing should be described completely in comment before start that action. 
+** notice : write this code very modular . it means write a function for any little work in it . 
+
+
+
+_____________________________________________________________________________________
+_____________________________________________________________________________________
+_____________________________________________________________________________________
+_____________________________________________________________________________________
+_____________________________________________________________________________________
+_____________________________________________________________________________________
+_____________________________________________________________________________________
+_____________________________________________________________________________________
+_____________________________________________________________________________________
+
+
+
+we have input like below one without exact number of process. 
+input example: 
+process_arrival = [ 2 ,7 , 3 , 4 , 9 , 5]  #(arrival of p1 = process_arrival[0] , p2_arrival=process_arrival[1] and ....)
+process_burst_list = [
+    [ 2 ,3,5 ,6 ,9 ],
+    [ 8 , 2 , 4 , 9 , 1 ,  4  ], #1th index is cpu burst and 2th index is io burst and 3th is cpu burst again and .... , it changes one by one with cpu and io in any process. 
+    [ 2 , 4  ],
+    [ 3,4,5,6,7,8,12 , 18 , 18 , 19 , 23 ],
+    [ 8,12 , 18 ],
+    [ 18 , 19  ],
+]    # index(0) is cpu/io burst of p1 , index(1) is for p2 , index( 2 ) is for p3 and .....
+<<end of input >>. 
+
+write a simple code to get the quantum time  and make gantt chart with algorithm (Round Robin) and return 
+this output like : 
+gantt chart : p3 , p7 , p3 , p2 , .......
+gantt_chart_quantum = 2 or any thing. 
+cput utilization : 20% 
+average response time : 38 
+average turn arount time : 99
+average waiting time : 20
+<<end of output message>> 
+
+*note that any process go to io burst must delete from ready and again when io ends must get in ready and again go to io must delete from ready qeueu and repeatedly contol that. 
