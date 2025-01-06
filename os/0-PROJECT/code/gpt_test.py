@@ -138,7 +138,7 @@ def optimize_quantum(
             metric = avg_response
         else:
             raise ValueError("Invalid optimization base. Use 'w', 't', or 'r'.")
-
+        print('\n\nmetric: ', metric , '\n\n')
         if metric < best_metric:
             best_metric = metric
             best_quantum = quantum
@@ -164,15 +164,16 @@ def print_gantt_chart(gantt_chart: List[Tuple[str, int]]) -> None:
     print("End")
 
 # Input data
-optimization_base = 'w'  # Options: 'w', 't', 'r'
-process_arrival = [2, 7, 3, 4, 9, 5]
+optimization_base = 't'  # Options: 'w', 't', 'r'
+process_arrival = [5,5,5,5,5 ]
 process_burst_list = [
-    [2, 3],
-    [8, 2, ],
-    [2],
-    [3, 4, ],
-    [8, 12, 18],
-    [18, 19],
+    [8 , 4 , 8 , 4],
+    [8 , 4 , 8 , 4],
+    [8 , 4 , 8 , 4],
+    [8 , 4 , 8 , 4],
+    [8 , 4 , 7, 4],
+
+
 ]
 
 # Run optimization
@@ -182,3 +183,15 @@ best_quantum, metrics, gantt_chart = optimize_quantum(optimization_base, process
 print(f"Utilized Quantum: {best_quantum}")
 print(f"Metrics: {metrics}")
 print_gantt_chart(gantt_chart)
+
+
+
+
+
+
+
+
+
+
+
+

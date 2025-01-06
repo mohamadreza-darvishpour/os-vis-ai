@@ -27,7 +27,7 @@ def simulate_rr(
     quantum: int,
     process_arrival: List[int],
     process_burst_list: List[List[int]]
-) -> Tuple[List[int], List[int], List[int], int]:
+) -> Tuple[List[int], List[int], List[int], int, List[Tuple[str, int]]]:
     """
     Simulate the round-robin scheduling.
     Returns:
@@ -35,6 +35,7 @@ def simulate_rr(
     - response_start: List of first response times for each process
     - total_burst: List of total burst times for each process
     - cpu_utilization: CPU utilization percentage
+    - gantt_chart: List of tuples representing the Gantt chart (process name, execution time)
     """
     n = len(process_arrival)
     ready_queue = []  # Holds processes waiting for CPU
@@ -45,6 +46,7 @@ def simulate_rr(
     completion_time = [-1] * n
     response_start = [-1] * n
     total_burst = [sum(burst[::2]) for burst in process_burst_list]  # Sum of CPU bursts only
+    gantt_chart = []
 
     while True:
         # Add arriving processes to the ready queue
@@ -61,6 +63,7 @@ def simulate_rr(
 
             # Execute for at most the quantum time or remaining burst time
             executed_time = min(quantum, remaining_burst[current])
+            gantt_chart.append((f"P{current + 1}", executed_time))
             time += executed_time
             remaining_burst[current] -= executed_time
 
@@ -91,17 +94,18 @@ def simulate_rr(
 
         # Advance time if no process is ready
         if not ready_queue:
+            gantt_chart.append(("Idle", 1))
             time += 1
 
     cpu_utilization = (sum(total_burst) / time) * 100
-    return completion_time, response_start, total_burst, cpu_utilization
+    return completion_time, response_start, total_burst, cpu_utilization, gantt_chart
 
 # Function to optimize quantum based on the chosen metric
 def optimize_quantum(
     optimization_base: str,
     process_arrival: List[int],
     process_burst_list: List[List[int]]
-) -> Tuple[int, dict]:
+) -> Tuple[int, dict, List[Tuple[str, int]]]:
     """
     Test quantum values from 1 to max CPU burst and find the best quantum
     based on the selected optimization base ('w', 't', 'r').
@@ -111,9 +115,10 @@ def optimize_quantum(
     best_quantum = 1
     best_metric = float('inf')
     performance = {}
+    best_gantt_chart = []
 
     for quantum in range(1, max_burst + 1):
-        completion_time, response_start, total_burst, cpu_utilization = simulate_rr(
+        completion_time, response_start, total_burst, cpu_utilization, gantt_chart = simulate_rr(
             quantum, process_arrival, process_burst_list
         )
 
@@ -137,6 +142,7 @@ def optimize_quantum(
         if metric < best_metric:
             best_metric = metric
             best_quantum = quantum
+            best_gantt_chart = gantt_chart
 
         performance[quantum] = {
             'avg_turnaround_time': avg_turnaround,
@@ -145,23 +151,38 @@ def optimize_quantum(
             'cpu_utilization': cpu_utilization
         }
 
-    return best_quantum, performance[best_quantum]
+    return best_quantum, performance[best_quantum], best_gantt_chart
+
+# Function to print the Gantt chart
+def print_gantt_chart(gantt_chart: List[Tuple[str, int]]) -> None:
+    """
+    Prints the Gantt chart in a human-readable format.
+    """
+    print("Gantt Chart:")
+    for process, duration in gantt_chart:
+        print(f"[{process} for {duration} units]", end=" -> ")
+    print("End")
 
 # Input data
 optimization_base = 'w'  # Options: 'w', 't', 'r'
 process_arrival = [2, 7, 3, 4, 9, 5]
 process_burst_list = [
-    [2, 3, 5, 6, 9],
-    [8, 2, 4, 9, 1, 4],
-    [2, 4],
-    [3, 4, 5, 6, 7, 8, 12, 18, 18, 19, 23],
+    [2, 3],
+    [8, 2, ],
+    [2],
+    [3, 4, ],
     [8, 12, 18],
     [18, 19],
 ]
 
 # Run optimization
-best_quantum, metrics = optimize_quantum(optimization_base, process_arrival, process_burst_list)
+best_quantum, metrics, gantt_chart = optimize_quantum(optimization_base, process_arrival, process_burst_list)
 
 # Output results
 print(f"Utilized Quantum: {best_quantum}")
 print(f"Metrics: {metrics}")
+print_gantt_chart(gantt_chart)
+
+
+
+
