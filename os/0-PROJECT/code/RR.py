@@ -22,21 +22,10 @@ ______________________________________
 '''
 
 
-
-
-
-
-
-
-
-
-
-test_path  = './code/test.txt'
-test_dict = {1:'red' , 2:'blue' , 3:'black'}
 #imports
 import numpy as np
 from typing import List, Tuple
-
+import sys
 
 
 # cleaning the lines of the input file and return list of lines. 
@@ -56,7 +45,10 @@ def lines_of_input_file(file_path):
                         'p' in cleaned[x][y] or
                         'P' in cleaned[x][y] or
                         'w' in cleaned[x][y] or
-                        'W' in cleaned[x][y] 
+                        'W' in cleaned[x][y] or 
+                        'T' in cleaned[x][y] or 
+                        't' in cleaned[x][y]  
+                        
                         )):
                     cleaned[x][y] = int(cleaned[x][y])
                 
@@ -94,7 +86,7 @@ def lines_to_dict(file_lines_list:list) -> dict :
     burst_list = [ proc_bursts[1:] for proc_bursts in file_lines_list[2:]]
     
     data_dict = {
-        'opt_base' : file_lines_list[0][0] , 
+        'opt_base' : file_lines_list[0][0].lower() , 
         'dl'       : file_lines_list[1][0] , 
         'process_arrival' : process_arrival,
         'burst_list'   :   burst_list   ,
@@ -103,14 +95,13 @@ def lines_to_dict(file_lines_list:list) -> dict :
 
 
 # writing output file 
-def make_out_file(p_col_dict:dict):
+def make_out_file(text:str):
     # try :
-        result = ''
         file_name = 'output.txt'
 
         with open(f'./code/{file_name}', 'w', encoding='utf-8') as file:
-            file.write(result)
-        print(f"\nFile '{file_name}' created successfully with content: {result}\n")
+            file.write(text)
+        print(f"\nFile '{file_name}' created successfully with content: {text}\n")
 
     # except Exception as e : 
     #     print(f'\nerror making output file. \n')
@@ -293,8 +284,56 @@ def print_gantt_chart(gantt_chart: List[Tuple[str, int]]) -> None:
 
 
 
+import sys
 
-proc_list = lines_of_input_file(test_path)
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python my_code.py <input_file>")
+        sys.exit(1)
+
+
+
+
+    input_file_path = sys.argv[1]        #input file path
+    # print(f"Input file provided: {input_file}")
+    
+    # read from input and get dict of data
+    data_dict = lines_to_dict(lines_of_input_file(input_file_path))
+    
+    #do the optimization and return result.
+    #result   best_qu , metrics , gantt chart 
+    best_quantum , metrics , gantt_chart  =   optimize_quantum(
+        optimization_base= data_dict['opt_base']  , 
+        process_arrival= data_dict['process_arrival']  ,
+        process_burst_list=  data_dict['burst_list'] , 
+        dl=  data_dict['dl']  , 
+        )
+    
+    # write result to outputfile 
+    result_text = f'\nbest quantum = {best_quantum}\nmetrics = {metrics}\ngantt_chart :\n{gantt_chart}'
+    make_out_file(result_text)
+
+
+'''
+ data_dict = {
+        'opt_base' : file_lines_list[0][0] , 
+        'dl'       : file_lines_list[1][0] , 
+        'process_arrival' : process_arrival,
+        'burst_list'   :   burst_list   ,
+    }
+
+'''
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+proc_list = lines_of_input_file('code/test.txt')
 print(lines_to_dict(proc_list))
 
 

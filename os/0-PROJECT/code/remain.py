@@ -1,5 +1,116 @@
+'''
+input file structure 
+line_1 >W    # W or R or T    which should be optimized? 
+line_2 >68   #dl : dispatcher latency
+
+LIne_3 >p1 : arrival_time , cpu_burst ,i_o_burst , cpu_burst , i_o_burst , cpu_burst ,........   # no specific amount.
+line_4 >p2:6 , 8 ,9,19,29,39,........
+line_5 > ....
+...
+...
+line_N >pN:8 , 9 ,19 ,............     # N.th process.   not specific amount: N . 
+
+'''
+
+#####   output 
+'''
+2     #optimized quantom.
+________________________________________________________
+p7|p8|p9|p2|w |p1|p2|
+______________________________________
+
+'''
+
+
+#imports
 import numpy as np
 from typing import List, Tuple
+import sys
+
+
+# cleaning the lines of the input file and return list of lines. 
+def lines_of_input_file(file_path):
+    '''get the input file path and return list of object like: 
+    [['W'], ['68'], ['p2:6', '8', '9', '19', '29', '39'], ['p2:9', '8', '9', '19'], ['p2:6', '8', '9', '19', '29', '39']]
+    '''
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+            for index in range(len(lines)):
+                lines[index]  = (lines[index].strip().replace(' ' ,'').replace(',',' ').strip().split())
+        cleaned = [item for item in lines if len(item) !=0]
+        for x in range(len(cleaned)): 
+            for y in range(len(cleaned[x])) : 
+                if( not( 
+                        'p' in cleaned[x][y] or
+                        'P' in cleaned[x][y] or
+                        'w' in cleaned[x][y] or
+                        'W' in cleaned[x][y] or 
+                        'T' in cleaned[x][y] or 
+                        't' in cleaned[x][y]  
+                        
+                        )):
+                    cleaned[x][y] = int(cleaned[x][y])
+                
+        # print('\ncleaned : ', cleaned , '\n')
+        return  cleaned
+
+    except FileNotFoundError:
+        print(f"\nError: The file at {file_path} was not found.\n")
+        return''
+    except Exception as e:
+        print(f"\nError reading file: {e}\n")
+        return''
+
+
+# make list of object get from input lines list 
+def lines_to_dict(file_lines_list:list) -> dict :
+    '''
+    input is list ; example : 
+        [['W'], [68], ['p1:6', 8, 9, 19, 29, 39], ['p2:9', 8, 9, 19], ['p3:6', 8, 9, 19, 29, 39], ['p4:9', 8, 9, 19], ['p5:6', 8, 9, 19, 29, 39]]
+    
+    output is dict , example : 
+        {'opt_base': 'W', 
+        'dl': 68, 
+        'process_arrival': [6, 9, 6, 9, 6], 
+        'burst_list': [[8, 9, 19, 29, 39], [8, 9, 19], [8, 9, 19, 29, 39], [8, 9, 19], [8, 9, 19, 29, 39]]}
+    '''
+    # handle process arrrival
+    process_arrival = [ file_lines_list[i][0] for i in range(2 , len(file_lines_list)) ]
+    for ind in range(len(process_arrival)):
+        item = process_arrival[ind]
+        item = int(item.split(':')[1])
+        # item = int(item.replace('p' , '').replace('P', ''))
+        process_arrival[ind ]  = item
+    #   <<<  end >>> of handle process arrival    
+    burst_list = [ proc_bursts[1:] for proc_bursts in file_lines_list[2:]]
+    
+    data_dict = {
+        'opt_base' : file_lines_list[0][0].lower() , 
+        'dl'       : file_lines_list[1][0] , 
+        'process_arrival' : process_arrival,
+        'burst_list'   :   burst_list   ,
+    }
+    return data_dict
+
+
+# writing output file 
+def make_out_file(text:str):
+    # try :
+        file_name = 'output.txt'
+
+        with open(f'./code/{file_name}', 'w', encoding='utf-8') as file:
+            file.write(text)
+        print(f"\nFile '{file_name}' created successfully with content: {text}\n")
+
+    # except Exception as e : 
+    #     print(f'\nerror making output file. \n')
+
+
+
+
+
+
 
 # Function to calculate turnaround time for all processes
 def calculate_turnaround_time(process_arrival: List[int], completion_time: List[int]) -> List[int]:
@@ -158,7 +269,7 @@ def optimize_quantum(
         }
 
     return best_quantum, performance[best_quantum], best_gantt_chart
-
+ 
 # Function to print the Gantt chart
 def print_gantt_chart(gantt_chart: List[Tuple[str, int]]) -> None:
     """
@@ -169,22 +280,85 @@ def print_gantt_chart(gantt_chart: List[Tuple[str, int]]) -> None:
         print(f"[{process} for {duration} units]", end=" -> ")
     print("End")
 
-# Input data
-optimization_base = 't'  # Options: 'w', 't', 'r'
-process_arrival = [5, 5, 5, 5, 5]
-process_burst_list = [
-    [8, ],
-    [8, 4, 8, 4],
-    [8, 4, 8, 4],
-    [8, 4, 8, 4],
-    [8, 4, 7, 4],
-]
-dispatcher_latency = 2  # Dispatcher latency in time units
 
-# Run optimization
-best_quantum, metrics, gantt_chart = optimize_quantum(optimization_base, process_arrival, process_burst_list, dispatcher_latency)
 
-# Output results
-print(f"Utilized Quantum: {best_quantum}")
-print(f"Metrics: {metrics}")
-print_gantt_chart(gantt_chart)
+
+
+import sys
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python my_code.py <input_file>")
+        sys.exit(1)
+
+
+
+
+    input_file_path = sys.argv[1]        #input file path
+    # print(f"Input file provided: {input_file}")
+    
+    # read from input and get dict of data
+    data_dict = lines_to_dict(lines_of_input_file(input_file_path))
+    
+    #do the optimization and return result.
+    #result   best_qu , metrics , gantt chart 
+    best_quantum , metrics , gantt_chart  =   optimize_quantum(
+        optimization_base= data_dict['opt_base']  , 
+        process_arrival= data_dict['process_arrival']  ,
+        process_burst_list=  data_dict['burst_list'] , 
+        dl=  data_dict['dl']  , 
+        )
+    
+    # write result to outputfile 
+    result_text = f'\nbest quantum = {best_quantum}\nmetrics = {metrics}\ngantt_chart :\n{gantt_chart}'
+    make_out_file(result_text)
+
+
+'''
+ data_dict = {
+        'opt_base' : file_lines_list[0][0] , 
+        'dl'       : file_lines_list[1][0] , 
+        'process_arrival' : process_arrival,
+        'burst_list'   :   burst_list   ,
+    }
+
+'''
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+proc_list = lines_of_input_file('code/test.txt')
+print(lines_to_dict(proc_list))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
