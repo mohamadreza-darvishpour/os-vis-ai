@@ -278,7 +278,7 @@ def optimize_quantum(
         }
 
     return best_quantum, performance[best_quantum], best_gantt_chart
-
+ 
 # Function to print the Gantt chart
 def print_gantt_chart(gantt_chart: List[Tuple[str, int]]) -> None:
     """
