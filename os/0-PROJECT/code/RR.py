@@ -243,9 +243,9 @@ def optimize_quantum(
         waiting_time = calculate_waiting_time(turnaround_time, total_burst)
         response_time = calculate_response_time(response_start, process_arrival)
 
-        avg_turnaround = np.mean(turnaround_time)
-        avg_waiting = np.mean(waiting_time)
-        avg_response = np.mean(response_time)
+        avg_turnaround = float(np.mean(turnaround_time))
+        avg_waiting = float( np.mean(waiting_time))
+        avg_response = float(np.mean(response_time))
 
         if optimization_base == 'w':
             metric = avg_waiting
