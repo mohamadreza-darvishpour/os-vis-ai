@@ -26,10 +26,11 @@ def calculate_response_time(response_start: List[int], process_arrival: List[int
 def simulate_rr(
     quantum: int,
     process_arrival: List[int],
-    process_burst_list: List[List[int]]
+    process_burst_list: List[List[int]],
+    dl: int
 ) -> Tuple[List[int], List[int], List[int], int, List[Tuple[str, int]]]:
     """
-    Simulate the round-robin scheduling.
+    Simulate the round-robin scheduling with dispatcher latency.
     Returns:
     - completion_time: List of completion times for each process
     - response_start: List of first response times for each process
@@ -57,6 +58,10 @@ def simulate_rr(
         # Handle CPU scheduling
         if ready_queue:
             current = ready_queue.pop(0)  # Fetch the next process in the queue
+
+            # Add dispatcher latency for context switch
+            gantt_chart.append(("DL", dl))
+            time += dl
 
             if response_start[current] == -1:
                 response_start[current] = time  # Record first response time
@@ -104,7 +109,8 @@ def simulate_rr(
 def optimize_quantum(
     optimization_base: str,
     process_arrival: List[int],
-    process_burst_list: List[List[int]]
+    process_burst_list: List[List[int]],
+    dl: int
 ) -> Tuple[int, dict, List[Tuple[str, int]]]:
     """
     Test quantum values from 1 to max CPU burst and find the best quantum
@@ -119,7 +125,7 @@ def optimize_quantum(
 
     for quantum in range(1, max_burst + 1):
         completion_time, response_start, total_burst, cpu_utilization, gantt_chart = simulate_rr(
-            quantum, process_arrival, process_burst_list
+            quantum, process_arrival, process_burst_list, dl
         )
 
         turnaround_time = calculate_turnaround_time(process_arrival, completion_time)
@@ -164,25 +170,21 @@ def print_gantt_chart(gantt_chart: List[Tuple[str, int]]) -> None:
     print("End")
 
 # Input data
-optimization_base = 'w'  # Options: 'w', 't', 'r'
-process_arrival = [2, 7, 3, 4, 9, 5]
+optimization_base = 't'  # Options: 'w', 't', 'r'
+process_arrival = [5, 5, 5, 5, 5]
 process_burst_list = [
-    [2, 3],
-    [8, 2, ],
-    [2],
-    [3, 4, ],
-    [8, 12, 18],
-    [18, 19],
+    [8, ],
+    [8, 4, 8, 4],
+    [8, 4, 8, 4],
+    [8, 4, 8, 4],
+    [8, 4, 7, 4],
 ]
+dispatcher_latency = 2  # Dispatcher latency in time units
 
 # Run optimization
-best_quantum, metrics, gantt_chart = optimize_quantum(optimization_base, process_arrival, process_burst_list)
+best_quantum, metrics, gantt_chart = optimize_quantum(optimization_base, process_arrival, process_burst_list, dispatcher_latency)
 
 # Output results
 print(f"Utilized Quantum: {best_quantum}")
 print(f"Metrics: {metrics}")
 print_gantt_chart(gantt_chart)
-
-
-
-
