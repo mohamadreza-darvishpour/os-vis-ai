@@ -1,0 +1,67 @@
+[Project]
+Current Flow=Generic
+VCS=0
+version=4
+Current Config=compile
+[Configurations]
+compile=sys_dig_des
+[Library]
+sys_dig_des=.\sys_dig_des\sys_dig_des.lib
+[$LibMap$]
+sys_dig_des=.
+Active_lib=
+[Settings]
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+REFRESH_FLOW=1
+FLOWTOOLS=NONE
+FAMILY=
+[Files]
+/TrafficLightController.vhd=-1
+/TrafficLightController_tb.vhd=-1
+[Files.Data]
+.\src\TrafficLightController.vhd=VHDL Source Code
+.\src\TrafficLightController_tb.vhd=VHDL Source Code
+[folders]
+name0=ALINT-PRO Workspaces
+directory0=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension0=alintws
+name1=Coverage Databases
+directory1=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension1=acdb
+name2=Dll Libraries
+directory2=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension2=dll
+name3=Event Lists
+directory3=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension3=lst
+name4=HTML Files
+directory4=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension4=htm;html
+name5=Log Files
+directory5=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension5=log;htm;xml;txt
+name6=Matlab/Simulink Files
+directory6=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\
+extension6=m;mdl;slx
+name7=Memory Files
+directory7=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension7=mem;mif;hex
+name8=PDF Files
+directory8=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension8=pdf
+name9=Profiler Databases
+directory9=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension9=tbp
+name10=Script Files
+directory10=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension10=do;tcl;pl
+name11=Waveform Files
+directory11=C:\Users\beta\Documents\0-parseh-ai-os-vis\z_digital_system\active_hdl\my_project_files\TrafficLightController_Workspace\sys_dig_des\
+extension11=asdb;awc;asdbc;asdbe
+[ORDER]
+Synchronize=0
+[HierarchyViewer]
+HierarchyInformation=trafficlightcontroller_tb|Behavioral|0
+ShowHide=ShowTopLevel
+Selected=

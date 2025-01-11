@@ -1,0 +1,36 @@
+timestamp=1736523306193
+
+[~A]
+ModifyID=44
+Version=74
+
+[~MFT]
+0=4|0sys_dig_des.mgf|4772|1152
+1=4|1sys_dig_des.mgf|92342|91273
+3=4|3sys_dig_des.mgf|4878|3802
+
+[trafficlightcontroller]
+A/behavioral=A/Behavioral 21|../src/TrafficLightController.vhd|16|1*91273
+BinW64/behavioral=3*3802
+I=0*2528
+I/behavioral=I/Behavioral 0*4545
+M=11|2|vef|1735309952009|../src/TrafficLightController.vhd|0*2049*0xfc19f6a15978b22f0d2eb0e31fc4e3495e7a13ff|0*2419*0x23b75c12e3e89f2ef000564498faa8c2
+M/behavioral=M/Behavioral 21|2|vef|1736523306107|../src/TrafficLightController.vhd|0*2744*0xfe51fae6f56d5f0e790f575fb8b21a0a5a6d7ec9|0*3414*0x9065d32a2e40e13794b29a2731812845
+R=../src/TrafficLightController.vhd|4
+Version=13.0.375.8320 (Windows64)|00000004789cd34d494a0700030f015b|c3312f2513cdf74fb8c736af3f83f3ddce96bfc80d51b69a4e18310a397fecb1a8ba62149d63a0719e09e0c49879c233
+Version/behavioral=13.0.375.8320 (Windows64)|00000004789cd34d494a0700030f015b|35f8e56ee514308d50318f7abb190927faf8176ad6902a7357df79bb1a85bff4e0044673a49fb0886e7b4bc75854b7e1
+
+[trafficlightcontroller_tb]
+A/behavioral=A/Behavioral 21|../src/TrafficLightController_tb.vhd|7|1*92342
+BinW64/behavioral=3*4878
+I=0*505
+I/behavioral=I/Behavioral 0*4772
+M=11|2|vef|1735309097940|../src/TrafficLightController_tb.vhd|0*156*0x4ea3f06141b99a76ad03a83a2580975cd708edc3|0*390*0x23b75c12e3e89f2ef000564498faa8c2
+M/behavioral=M/Behavioral 21|2|vef|1736523306173|../src/TrafficLightController_tb.vhd|0*724*0x72368765a01ae7df0dcde521d89b26fa1848f785|0*1552*0x9065d32a2e40e13794b29a2731812845
+R=../src/TrafficLightController_tb.vhd|4
+Version=13.0.375.8320 (Windows64)|00000004789cd34d494a0700030f015b|c3312f2513cdf74fb8c736af3f83f3ddb66e0fc6eb859b4e04cb4f78c01591666c43a2b6a476e5da5cb32ffdb6f2ae09e4dcad87ec4b04db0d4230d64170e5f1
+Version/behavioral=13.0.375.8320 (Windows64)|00000004789cd34d494a0700030f015b|35f8e56ee514308d50318f7abb190927faf8176ad6902a7357df79bb1a85bff40b9b2c7bd33a415da3cdb4af3e7b9e30
+
+[~U]
+trafficlightcontroller=TrafficLightController 11|0*1825|
+trafficlightcontroller_tb=TrafficLightController_tb 11|0*0|

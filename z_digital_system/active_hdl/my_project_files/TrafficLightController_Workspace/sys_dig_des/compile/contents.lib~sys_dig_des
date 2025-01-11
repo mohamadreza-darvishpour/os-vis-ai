@@ -1,4 +1,4 @@
-42
+44
 ~E 1 "../src/TrafficLightController.vhd" 4 TrafficLightController
 ~A 1 "../src/TrafficLightController.vhd" 16 Behavioral
 ~E 1 "../src/TrafficLightController_tb.vhd" 4 TrafficLightController_tb

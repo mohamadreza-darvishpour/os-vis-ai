@@ -4,12 +4,3 @@ tab=lu
 [OPENDOC|Aldec.Hde.HdePlugIn.7|.\sys_dig_des\src/TrafficLightController_tb.vhd|]
 TemplateId=0
 tab=lu
-[OPENDOC|Aldec.Hde.HdePlugIn.7|A:/0_installed_active_hdl/vlib/std/src/standard.vhd|]
-TemplateId=0
-tab=lu
-[OPENDOC|Aldec.Hde.HdePlugIn.7|A:/0_installed_active_hdl/vlib/std/src/textio.vhd|]
-TemplateId=0
-tab=lu
-[OPENDOC|Aldec.Hde.HdePlugIn.7|A:/0_installed_active_hdl/vlib/ieee/src/std_logic_1164.vhdl|]
-TemplateId=0
-tab=lu
