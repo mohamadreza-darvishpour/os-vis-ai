@@ -42,3 +42,15 @@ ______________________________
 
 
 
+write a graphical snake latter game in perl. 
+write all thing in main part with function not inheritance . 
+show the button with snake with "SS(but_num_to_bit)" and latter with LL(but_num_to_help)
+
+when arrive to latter or snake ask a question of current number like are you in state number 5 ? and answer is yes or no . 
+if correct snake not bitten and latter help to go if not reeverse . 
+
+show the current dice , curentt player time , 2 player game . first with blue and second with green circle  in its block when arriving. 
+
+
+
+
