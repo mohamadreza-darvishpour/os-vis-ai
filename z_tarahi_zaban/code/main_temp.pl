@@ -28,11 +28,11 @@ $mw->title("Snakes and Ladders");
 my $canvas = $mw->Canvas(-width => 500, -height => 500)->pack;
 
 # Draw board
-for my $j (0..9) {
-    for my $i (0..9) {
+for my $i (0..9) {
+    for my $j (0..9) {
         my $x = $i * 50;
         my $y = $j * 50;
-        my $step = $i * 1 + $j + 10;
+        my $step = $j * 10 + $i +1;
         $canvas->createRectangle($x, $y, $x + 50, $y + 50, -fill => 'white');
         $canvas->createText($x + 25, $y + 25, -text => $step);
 
