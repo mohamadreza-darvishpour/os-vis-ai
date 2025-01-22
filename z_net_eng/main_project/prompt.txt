@@ -1,0 +1,47 @@
+
+
+
+
+
+
+i need java file  net_server.java that do these works: 
+it shold handle request with sufficient header like http and https , 
+and we have a folder named "files_to_answer" 
+then when we get a request from a session or any ip we should send the file requested from client. 
+it is look like the nginx . 
+for example if header is good and request say that need 'index_page.html' file it should send that html file . 
+
+in other hand the config must have some options that given from a 'server_config.txt' file 
+the file 'server_config.txt' contains text that : 
+syn_request_limit=3 ;    // it says that just make 3 thread for request means just 3 request synchronizely answered not more . 
+blocked_ip = ['192.188.4.5'   ,   '222.6.3.8']     // it says which ip you should not answered
+restricted_ip = [ '1.5.55.1'   ]     // it says which ip you should to send error 403 means forbidden . 
+port_to_run_answer =2030       // the port should use 
+
+write the program any time config file changes update the works. 
+
+and in the "files_to_answer" we have files like (404.html , 403.html , 402.html ,500.html ) 
+so when the request is wrong you should send the files contains error good html file . 
+
+write any function with entire error handling not more than one try , catch , 
+write the threads handle with threadspool 
+
+and say how to test it with telnet .
+
+
+
+
+
+
+test with ********
+curl http://localhost:2030/index_page.html
+
+
+
+
+
+
+
+
+
+

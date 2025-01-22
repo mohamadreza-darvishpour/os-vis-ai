@@ -2,7 +2,7 @@
 
 import os
 
-def get_image_files(directory_path):
+def get_image_files_path_list(directory_path):
     """
     Get all image files (.jpg, .png, .jpeg) in the specified directory.
 
@@ -23,15 +23,16 @@ def get_image_files(directory_path):
         file_path = os.path.join(directory_path, file_name)
         # Check if the file is a valid image based on its extension
         if os.path.isfile(file_path) and os.path.splitext(file_name.lower())[1] in image_extensions:
-            image_files.append(file_name)
+            image_files.append(f'{directory_path}/{file_name}')
 
     return image_files
 
 # Example usage:
 if __name__ == "__main__":
-    directory = input("Enter the directory path: ")
+    # directory = input("Enter the directory path: ")
+    directory = 'dataset/banknote_dataset'
     try:
-        images = get_image_files(directory)
+        images = get_image_files_path_list(directory)
         print("Image files found:", images)
     except FileNotFoundError as e:
         print(e)

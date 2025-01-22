@@ -1,0 +1,34 @@
+
+
+
+<<<<<<<<<<<<<<<<<  algorithm :   >>>>>>>>>>>>>>>>>>>>>
+
+input    >>>   ( algo_type , path_of_test_pic )
+output    >>>   (  org_pic_path   )
+
+write a gui file in 
+
+
+
+
+---------------------
+histogram: 
+write a function in python that get input
+ like ( picture_path  ) and compare it by ( histogram )  of 
+red and blue and green amount with the 
+given_data_set_picture_path_list . then print point for
+ similarity for them and return the most similar 
+one  to picture_path 
+
+
+
+
+
+<<<<<<<<<<<<      gui :      >>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+

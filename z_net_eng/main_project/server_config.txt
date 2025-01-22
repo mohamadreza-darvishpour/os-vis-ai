@@ -1,0 +1,4 @@
+syn_request_limit=3
+blocked_ip = ['192.188.4.5'   ,   '127.0.0.1']    
+restricted_ip = [ '1.5.55.1' ]    
+port_to_run_answer =2030
