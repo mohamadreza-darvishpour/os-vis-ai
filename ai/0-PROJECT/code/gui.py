@@ -1,22 +1,21 @@
 import sys
 import networkx as nx
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QPushButton,
+    QApplication, QMainWindow, QVBoxLayout, QPushButton,
     QWidget, QMessageBox, QTextEdit, QSplitter
 )
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
-from colors_graph import * 
+from colors_graph import color_points_ids, lines_of_input_file, make_out_file
+from random_adj_mat import create_or_find_file_with_random_matrix
 
 def read_input_matrix(file_path):
     """Read the adjacency matrix from a file, removing empty lines and extra whitespaces."""
     with open(file_path, 'r') as file:
         return [
             list(map(int, line.split())) 
-            for line in file.readlines() 
-            if line.strip()  # Ignore empty lines
+            for line in file if line.strip()
         ]
-    file.close()
 
 def read_output_colors(file_path):
     """Read node colors from a file."""
@@ -24,18 +23,15 @@ def read_output_colors(file_path):
         color_data = file.read().strip().split(',')
         return {int(item.split('=')[0]): item.split('=')[1] for item in color_data if '=' in item}
 
-
 class GraphApp(QMainWindow):
     def __init__(self, input_file, output_file):
         super().__init__()
         self.setWindowTitle("Graph Drawer")
         self.resize(1000, 600)
-
         self.input_file = input_file
         self.output_file = output_file
-
         self.init_ui()
-        self.draw_graph()
+        self.reload_all()
 
     def init_ui(self):
         """Set up the UI layout."""
@@ -62,12 +58,12 @@ class GraphApp(QMainWindow):
         self.canvas = FigureCanvas(Figure())
         graph_layout.addWidget(self.canvas)
 
-        # Button to reread files
-        reread_button = QPushButton("Reread Files")
-        reread_button.clicked.connect(self.draw_graph)
-        graph_layout.addWidget(reread_button)
+        # Reload button
+        reload_button = QPushButton("Reload")
+        reload_button.clicked.connect(self.reload_all)
+        graph_layout.addWidget(reload_button)
 
-        # Button to remake input (calls an external function)
+        # Remake input file button
         remake_button = QPushButton("Remake Input File")
         remake_button.clicked.connect(self.remake_input_file)
         graph_layout.addWidget(remake_button)
@@ -75,32 +71,37 @@ class GraphApp(QMainWindow):
         splitter.addWidget(graph_widget)
 
         # Set the splitter to divide space equally
-        splitter.setSizes([500, 500])  # Adjust initial sizes (50-50 split)
+        splitter.setSizes([500, 500])
 
-    def draw_graph(self):
-        """Read files and draw the graph."""
+    def reload_all(self):
+        """Reload and redraw all components."""
         try:
+            # Read input and output files
             matrix = read_input_matrix(self.input_file)
             colors = read_output_colors(self.output_file)
+
+            # Display adjacency matrix
+            matrix_text = "\n".join([" ".join(map(str, row)) for row in matrix])
+            self.matrix_display.setText(matrix_text)
+
+            # Create and draw the graph
+            self.draw_graph(matrix, colors)
+
         except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to read files: {e}")
-            return
+            QMessageBox.critical(self, "Error", f"Failed to reload files: {e}")
 
-        # Format and display the adjacency matrix
-        matrix_text = "\n".join([" ".join(map(str, row)) for row in matrix])  # Single space between items
-        self.matrix_display.setText(matrix_text)
-
-        # Create the graph
+    def draw_graph(self, matrix, colors):
+        """Draw the graph based on the adjacency matrix and colors."""
         graph = nx.Graph()
 
         # Add nodes with colors
-        for node, color in colors.items():
-            graph.add_node(node, color=color)
+        for node in range(len(matrix)):
+            graph.add_node(node, color=colors.get(node, "gray"))
 
         # Add edges based on the adjacency matrix
-        for i, row in enumerate(matrix):
-            for j, value in enumerate(row):
-                if value == 1:
+        for i in range(len(matrix)):
+            for j in range(i + 1, len(matrix[i])):
+                if matrix[i][j] == 1:
                     graph.add_edge(i, j)
 
         # Draw the graph
@@ -108,7 +109,6 @@ class GraphApp(QMainWindow):
         ax = self.canvas.figure.add_subplot(111)
         ax.set_axis_off()
 
-        # Extract node colors
         node_colors = [data['color'] for _, data in graph.nodes(data=True)]
         nx.draw_networkx(
             graph, 
@@ -122,11 +122,30 @@ class GraphApp(QMainWindow):
         self.canvas.draw()
 
     def remake_input_file(self):
-        """Placeholder function to call an external function."""
-        QMessageBox.information(self, "Remake Input", "Call your external function here to remake the input file.")
-    
-        # Replace with your actual external function call
+        """Remake the input file and reload everything."""
+        try:
+            # Create or find the input file
+            create_or_find_file_with_random_matrix(self.input_file)
 
+            # Perform graph coloring
+            input_adjacency = lines_of_input_file(self.input_file)
+            num_colors = 10
+            print('\n\nsign 83')
+            ids_obj = color_points_ids(input_adjacency, num_colors)
+            print('\n\nsign 84')
+            ids_obj.ids_coloring()
+            print('\n\nsign 85')
+            output_text = ids_obj.color_result()
+            del ids_obj
+
+            # Write the output file
+            make_out_file(output_text)
+
+            QMessageBox.information(self, "Success", "Input file remade and output file created successfully!")
+            self.reload_all()
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

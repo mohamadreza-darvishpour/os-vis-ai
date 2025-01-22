@@ -1,0 +1,13 @@
+from command line 
+
+from just this dir 
+run 
+python.exe  colors_graph input.txt
+
+
+
+
+
+
+
+
