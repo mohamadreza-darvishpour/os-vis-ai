@@ -79,8 +79,8 @@ class color_points_ids:
 
     def color_result(self) : 
         color_list  = ['red' , 'green' , 'blue' , 
-                       'orange', 'white' , 'aqua' , 
-                       'yellow' , 'purple' , 'black',]
+                       'orange', 'aqua' , 
+                       'yellow' , 'purple' , 'black','gray',]
         result_message ='' 
         if self.ids_coloring() ==False : 
             return 'error in \n\t\t1.adjacency matris\n\tor\n\t\t2.number of colors to use.\n'
@@ -107,12 +107,12 @@ def main():
         input_file_path = sys.argv[1]
         input_adjacency = lines_of_input_file(input_file_path)
         print(input_adjacency,'\n')
-        num_type_color = 4
+        num_type_color = 10
         ids_obj = color_points_ids(adjacency_mat=input_adjacency , num_colors=num_type_color)
         ids_obj.ids_coloring() 
         out_put_text = ids_obj.color_result()
         make_out_file(out_put_text)
-
+        del ids_obj
         print('\n\n\t<<done>>')
 
     except:
