@@ -112,9 +112,9 @@ def main():
         ids_obj.ids_coloring() 
         out_put_text = ids_obj.color_result()
         make_out_file(out_put_text)
-        
+
         print('\n\n\t<<done>>')
-    
+
     except:
         print('\n\n\t\t\t<<error>>')
 
