@@ -15,7 +15,7 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
 
     # Try all possible quantum values from 1 to max_burst
     for quantum in range(1, max_burst + 1):
-        print(f"\nTesting quantum = {quantum}")
+        # print(f"\nTesting quantum = {quantum}")
         ready_queue = []
         io_queue = []
         current_time = 0
@@ -34,7 +34,7 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
                 if arrival_times[i] <= current_time and i not in ready_queue:
                     ready_queue.append(i)
                     processes.remove(i)
-
+            # print("\ncontinue   .\n")
             # Handle IO bursts
             i = 0
             while i < len(io_queue):
@@ -77,26 +77,26 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
 
             # Add dispatcher latency
             current_time += dl
+            # print("here2222")
 
         # Calculate total elapsed time
         total_elapsed_time = current_time
-
         # Debug prints for CPU utilization calculation
-        print(f"Total CPU Busy Time: {total_cpu_busy_time}")
-        print(f"Total Elapsed Time: {total_elapsed_time}")
+        # print(f"Total CPU Busy Time: {total_cpu_busy_time}")
+        # print(f"Total Elapsed Time: {total_elapsed_time}")
 
         # Calculate CPU utilization
+        # print('here983')
         if total_elapsed_time > 0:
             cpu_utilization = (total_cpu_busy_time / total_elapsed_time) * 100
         else:
             cpu_utilization = 0
-
+        # print('\ncpu uti : ' , cpu_utilization)
         # Calculate turnaround, waiting, and response times
         n = len(process_arrival)
         turnaround_times = [completion_times[i] - arrival_times[i] for i in range(n)]
         waiting_times = [turnaround_times[i] - sum(processes_burst_lists[i]) for i in range(n)]
         response_times = [first_response[i] - arrival_times[i] for i in range(n)]
-
         avg_turnaround_time = sum(turnaround_times) / n
         avg_waiting_time = sum(waiting_times) / n
         avg_response_time = sum(response_times) / n
@@ -109,50 +109,56 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
         }
 
         # Debug prints for metrics
-        print(f"CPU Utilization: {cpu_utilization}%")
-        print(f"Average Turnaround Time: {avg_turnaround_time}")
-        print(f"Average Response Time: {avg_response_time}")
-        print(f"Average Waiting Time: {avg_waiting_time}")
+        # print(f"CPU Utilization: {cpu_utilization}%")
+        # print(f"Average Turnaround Time: {avg_turnaround_time}")
+        # print(f"Average Response Time: {avg_response_time}")
+        # print(f"Average Waiting Time: {avg_waiting_time}")
 
         # Check if this quantum is better based on optimization_base
+        print('\nsign 8239 : ' , 'metrics' , metrics )
         if (
-            (optimization_base == "W" and (not best_metrics or metrics["avg_waiting_time"] < best_metrics["avg_waiting_time"]))
-            or (optimization_base == "R" and (not best_metrics or metrics["avg_response_time"] < best_metrics["avg_response_time"]))
-            or (optimization_base == "T" and (not best_metrics or metrics["avg_turnaround_time"] < best_metrics["avg_turnaround_time"]))
+            (optimization_base in "wW" and (not best_metrics or metrics["avg_waiting_time"] < best_metrics["avg_waiting_time"]))
+            or (optimization_base in "rR" and (not best_metrics or metrics["avg_response_time"] < best_metrics["avg_response_time"]))
+            or (optimization_base in "Tt" and (not best_metrics or metrics["avg_turnaround_time"] < best_metrics["avg_turnaround_time"]))
         ):
+            # print('here23')
+            # print('\nhere2  : ' , metrics)
             best_quantum = quantum
             best_metrics = metrics
             best_gantt_chart = gantt_chart  # Update the best Gantt chart
 
     # Output the results
-    print("\nFinal Results:")
-    print("Best Quantum:", best_quantum)
-    print("CPU Utilization:", best_metrics["cpu_utilization"], "%")
-    print("Average Turnaround Time:", best_metrics["avg_turnaround_time"])
-    print("Average Response Time:", best_metrics["avg_response_time"])
-    print("Average Waiting Time:", best_metrics["avg_waiting_time"])
-    print("Best Gantt Chart:", best_gantt_chart)
+    # print("\nFinal Results:")
+    # print("Best Quantum:", best_quantum)
+    # print("CPU Utilization:", best_metrics["cpu_utilization"], "%")
+    # print("Average Turnaround Time:", best_metrics["avg_turnaround_time"])
+    # print("Average Response Time:", best_metrics["avg_response_time"])
+    # print("Average Waiting Time:", best_metrics["avg_waiting_time"])
+    # print("Best Gantt Chart:", best_gantt_chart)
 
-    return {
-        "cpu_utilization": best_metrics["cpu_utilization"],
+    dict_send = {
+        'best_quantum'   :  best_quantum , 
         "avg_turnaround_time": best_metrics["avg_turnaround_time"],
+        "cpu_utilization": best_metrics["cpu_utilization"],
         "avg_response_time": best_metrics["avg_response_time"],
         "avg_waiting_time": best_metrics["avg_waiting_time"],
         "best_gantt_chart": best_gantt_chart,  # Include the best Gantt chart in the results
     }
+    return dict_send
 
 
-# Test the function
-optimization_base = "T"  # 'W' for waiting time, 'R' for response time, 'T' for turnaround time
-dl = 1  # Dispatcher latency
-process_arrival = [0, 1,3,3, 2, 3]
-processes_burst_lists = [
-    [3, 10, 1, 30 , 9],
-    [1, 12, 1, 1, 1],
-    [1, 12, 1, 1, 1],
-    [1, 12, 1, 1, 1],
-    [1, 2],
-    [1],
-]
+# # Test the function
+# optimization_base = "T"  # 'W' for waiting time, 'R' for response time, 'T' for turnaround time
+# dl = 1  # Dispatcher latency
+# process_arrival = [0, 1,3,3, 2, 3]
+# processes_burst_lists = [
+#     [3, 10, 1, 30 , 9],
+#     [1, 12, 1, 1, 1],
+#     [1, 12, 1, 1, 1],
+#     [1, 12, 1, 1, 1],
+#     [1, 2],
+#     [1],
+# ]
 
-result = round_robin_scheduler(optimization_base, dl, process_arrival, processes_burst_lists)
+# result = round_robin_scheduler(optimization_base, dl, process_arrival, processes_burst_lists)
+# print(result)
