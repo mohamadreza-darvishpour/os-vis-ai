@@ -115,7 +115,7 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
         # print(f"Average Waiting Time: {avg_waiting_time}")
 
         # Check if this quantum is better based on optimization_base
-        print('\nsign 8239 : ' , 'metrics' , metrics )
+        # print('\nsign 8239 : ' , 'metrics' , metrics )
         if (
             (optimization_base in "wW" and (not best_metrics or metrics["avg_waiting_time"] < best_metrics["avg_waiting_time"]))
             or (optimization_base in "rR" and (not best_metrics or metrics["avg_response_time"] < best_metrics["avg_response_time"]))

@@ -25,20 +25,20 @@ def main():
 
     input_file_path = sys.argv[1]        #input file path
     data_dict = lines_to_dict(lines_of_input_file(input_file_path))
-    print(data_dict)
+    # print(data_dict)
     res =   round_robin_scheduler(
         optimization_base= data_dict[ 'opt_base' ].lower() ,
         dl= data_dict[ 'dl' ]   , 
         process_arrival=  data_dict[ 'process_arrival' ]   , 
         processes_burst_lists= data_dict[ 'burst_list' ]   , 
     )
-    print(res)
-    
+    # print(res)
+    # make_out_file(res)
     # print('\n\n\nresult : ' , result  )
-    # string = '' 
-    # for key , val in res.items():
-    #     string += f'{key} : {val} \n'
-    # make_out_file(string)
+    string = '' 
+    for key , val in res.items():
+        string += f'{key} : {val} \n'
+    make_out_file(string)
 
 
 '''
