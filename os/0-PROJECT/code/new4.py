@@ -24,11 +24,12 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
         completion_times = [0] * len(processes)
         first_response = [0] * len(processes)
         remaining_bursts = [sum(bursts) for bursts in burst_times]
-        count1 = 0 
-        while count1<200 and processes:
-            count1 += 1 
+        count1 = 0
+        num_dispatcher_latencies = 0  # Track the number of dispatcher latencies
+
+        while count1 < 200 and processes:
+            count1 += 1
             # Debugging: Print current state
-            #sign *****************
             # print(f"c_{count1}: Time = {current_time}, Ready Queue = {ready_queue}, IO Queue = {io_queue}, Processes = {processes}")
 
             # Add arriving processes to the ready queue
@@ -86,22 +87,31 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
 
             # Add dispatcher latency
             current_time += dl
+            num_dispatcher_latencies += 1  # Increment the number of dispatcher latencies
 
             # Check if all processes have completed
             if not processes:
                 break  # Exit the loop if no processes are left
 
-        # Calculate metrics
-        n = len(process_arrival)
-        turnaround_times = [completion_times[i] - arrival_times[i] for i in range(n)]
-        waiting_times = [turnaround_times[i] - sum(processes_burst_lists[i]) for i in range(n)]
-        response_times = [first_response[i] - arrival_times[i] for i in range(n)]
-        
-        avg_turnaround_time = sum(turnaround_times) / n
-        avg_waiting_time = sum(waiting_times) / n
-        avg_response_time = sum(response_times) / n
-        cpu_utilization = (sum(sum(bursts) for bursts in processes_burst_lists) / completion_times[-1]) * 100
+    # Calculate metrics
+    n = len(process_arrival)
+    turnaround_times = [completion_times[i] - arrival_times[i] for i in range(n)]
+    waiting_times = [turnaround_times[i] - sum(processes_burst_lists[i]) for i in range(n)]
+    response_times = [first_response[i] - arrival_times[i] for i in range(n)]
 
+    avg_turnaround_time = sum(turnaround_times) / n
+    avg_waiting_time = sum(waiting_times) / n
+    avg_response_time = sum(response_times) / n
+
+    # Correct CPU Utilization Formula
+    total_cpu_busy_time = sum(sum(bursts) for bursts in processes_burst_lists)
+    total_elapsed_time = completion_times[-1]
+    total_dispatcher_latency = num_dispatcher_latencies * dl
+
+    if total_elapsed_time > total_dispatcher_latency:
+        cpu_utilization = (total_cpu_busy_time / (total_elapsed_time - total_dispatcher_latency)) * 100
+    else:
+        cpu_utilization = 0  # Prevent division by zero
         metrics = {
             "avg_turnaround_time": avg_turnaround_time,
             "avg_waiting_time": avg_waiting_time,
@@ -129,7 +139,7 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
     print("Average Turnaround Time:", best_metrics["avg_turnaround_time"])
     print("Average Response Time:", best_metrics["avg_response_time"])
     print("Average Waiting Time:", best_metrics["avg_waiting_time"])
-    print("best_quantum: " ,  best_quantum )
+    print("best_quantum: ", best_quantum)
 
     return {
         "gantt_chart": best_gantt_chart,
@@ -142,13 +152,13 @@ def round_robin_scheduler(optimization_base, dl, process_arrival, processes_burs
 
 # Test the function
 optimization_base = 'R'  # 'W' for waiting time, 'R' for response time, 'T' for turnaround time
-dl = 1  # Dispatcher latency
-process_arrival = [0,1,2,3]
+dl = 2  # Dispatcher latency
+process_arrival = [0, 1, 2, 3]
 processes_burst_lists = [
     [3, 10, 1], 
     [1, 12, 1, 1, 1], 
-    [1,2], 
+    [1, 2], 
     [1]
-    ]
+]
 
 result = round_robin_scheduler(optimization_base, dl, process_arrival, processes_burst_lists)
