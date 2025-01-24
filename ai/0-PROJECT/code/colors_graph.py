@@ -66,7 +66,6 @@ class color_points_ids:
         return False
     
     
-        
 
     def ids_coloring(self) -> np.ndarray:
         '''perform IDS for graph coloring.'''

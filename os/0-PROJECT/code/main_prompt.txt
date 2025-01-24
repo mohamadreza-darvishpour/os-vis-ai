@@ -1,0 +1,39 @@
+    
+    output is dict , example : 
+        {'opt_base': 'W', 
+        'dl': 68, 
+        'process_arrival': [6, 9, 6, 9, 6], 
+        'burst_list': [[8, 9, 19, 29, 39], [8, 9, 19], [8, 9, 19, 29, 39], [8, 9, 19], [8, 9, 19, 29, 39]]}
+
+write function in python that use round robin algorithm to handle processes with dispatcherlatency . 
+
+#start input 
+function input is : 
+optimization_base : 'W'   # it can be ('w') for waitingtime , or ('r') for response time  , or ('t') for turn around time . 
+dl > int : x   # x is an integer amount as dispatcher latency . 
+process_arrival  : [first_proc_arrive , second_proc_arrive , next_proc_arrive ,,,]   #its a list that any index for one process like process arrival number 0 is in index 0 
+processes_burst_lists : [[3,2,1],[1,2,1,1,1],[5,5,6,1],[1]] #the time of processess (cpu burst and io burst list) for any process #any main list index is for process number of index like list is in index 2 of main list is list of bursts for process number 2. 
+#end of input . 
+notice that process_burst_list is list of list . and any process_burst list is a list like [1,3,1,..] . it has not any specific amount of burst. and it in that list  first index is cpu burst , second is io burst , third is cpu burst again  , fourth is io burst , and in indexes one by one cpu burst and io burst chanes 
+this function should find best quantum amount to make best cpu-utilization and return , quantum is from 1 to maximum burst amount . 
+notice when a process go to io burst must be out of the ready qeueu till finish io . 
+notice that a process when has nothing to burst must delete not get dispatcher latency again just delete from all qeueu . 
+
+
+out put of function must be the dictionary with . . 
+gant_chart list and write it in terminal.
+cpu_utilization and write it in terminal.
+avarege turnaround time and write it in terminal 
+average response time  and write it in terminal 
+average waiting time and write it in terminal  . 
+
+not use collection lib just write a simple queue function or class
+not use enumerate just use simple iterations 
+not use any outer library just write it in a simple way . 
+
+ in the list of burst of any processes bursts list 
+ index after index is cpu burst and io burst and cpuburst and 
+continuosly it changes and when a cpu burst  end it should go to io burst 
+and till io not finished could not go to next cpu burst . 
+
+write all just in one function without more function to use and add test in the end . 

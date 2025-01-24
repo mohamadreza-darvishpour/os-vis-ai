@@ -99,7 +99,7 @@ def make_out_file(text:str):
     # try :
         file_name = 'output.txt'
 
-        with open(f'./code/{file_name}', 'w', encoding='utf-8') as file:
+        with open(f'{file_name}', 'w', encoding='utf-8') as file:
             file.write(text)
         print(f"\nFile '{file_name}' created successfully with content: {text}\n")
 
@@ -215,6 +215,11 @@ def simulate_rr(
 
     cpu_utilization = (sum(total_burst) / time) * 100
     return completion_time, response_start, total_burst, cpu_utilization, gantt_chart
+
+
+
+
+
 
 # Function to optimize quantum based on the chosen metric
 def optimize_quantum(
@@ -333,8 +338,8 @@ if __name__ == "__main__":
 
 
 
-proc_list = lines_of_input_file('code/test.txt')
-print(lines_to_dict(proc_list))
+# proc_list = lines_of_input_file('test.txt')
+# print(lines_to_dict(proc_list))
 
 
 
