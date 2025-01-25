@@ -12,3 +12,4 @@ urlpatterns = [
     path('testimonial/', TestimonialView.as_view(), name='testimonial'),
     path('404/', NotFoundView.as_view(), name='404'),
 ]
+

@@ -1,0 +1,14 @@
+{
+    "indentRainbow.excludedLanguages": [
+
+        "plaintext",
+        "python",
+        "cpp" ,
+        "c++" ,
+        "java",
+        "html",
+        "css" ,
+        "javascript" , 
+        "js",
+    ]
+}

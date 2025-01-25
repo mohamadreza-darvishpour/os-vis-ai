@@ -2,11 +2,18 @@ from django.shortcuts import render
 from django.views import View
 from .models import Course, TeamMember, Testimonial
 from .forms import ContactForm, TestimonialForm
+from . import models
 
 class IndexView(View):
     def get(self, request):
-        courses = Course.objects.all()
-        return render(request, 'test_app/index.html', {'courses': courses})
+        categories = models.categories.objects.all()
+        courses = models.Course.objects.all()
+        
+        datas = {
+            'categories' : categories ,
+            'courses': courses , 
+        }
+        return render(request, 'test_app/index.html', datas)
 
 class AboutView(View):
     def get(self, request):
