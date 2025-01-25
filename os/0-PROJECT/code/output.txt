@@ -1,6 +1,6 @@
 best_quantum : 1 
-avg_turnaround_time : 8.8 
-cpu_utilization : 26.666666666666668 
-avg_response_time : 5.4 
-avg_waiting_time : 5.2 
-best_gantt_chart : [(0, 2, 3), (1, 5, 6), (2, 8, 9), (3, 11, 12), (4, 14, 15), (0, 17, 18), (2, 22, 23), (3, 25, 26)] 
+avg_turnaround_time : 9.2 
+cpu_utilization : 16.0 
+avg_response_time : 5.0 
+avg_waiting_time : 7.4 
+best_gantt_chart : [(0, 0, 1), (0, 5, 6), (1, 20, 21), (2, 23, 24), (3, 30, 31), (4, 35, 36), (2, 40, 41), (3, 45, 46)] 

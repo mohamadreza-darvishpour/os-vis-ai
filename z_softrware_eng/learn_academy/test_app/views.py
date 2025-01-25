@@ -1,73 +1,53 @@
 from django.shortcuts import render
-from django import views
-from . import models , forms
-# Create your views here.
+from django.views import View
+from .models import Course, TeamMember, Testimonial
+from .forms import ContactForm, TestimonialForm
 
+class IndexView(View):
+    def get(self, request):
+        courses = Course.objects.all()
+        return render(request, 'test_app/index.html', {'courses': courses})
 
+class AboutView(View):
+    def get(self, request):
+        return render(request, 'test_app/about.html')
 
-class  index(views.View):
-    def get(self , request):
+class ContactView(View):
+    def get(self, request):
+        form = ContactForm()
+        return render(request, 'test_app/contact.html', {'form': form})
 
+    def post(self, request):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Handle the form data (e.g., send email)
+            return render(request, 'test_app/contact.html', {'form': form, 'success': True})
+        return render(request, 'test_app/contact.html', {'form': form})
 
-       return render(request , 'test_app/index.html')  
+class CoursesView(View):
+    def get(self, request):
+        courses = Course.objects.all()
+        return render(request, 'test_app/courses.html', {'courses': courses})
 
+class TeamView(View):
+    def get(self, request):
+        team_members = TeamMember.objects.all()
+        return render(request, 'test_app/team.html', {'team_members': team_members})
 
+class TestimonialView(View):
+    def get(self, request):
+        testimonials = Testimonial.objects.all()
+        form = TestimonialForm()
+        return render(request, 'test_app/testimonial.html', {'testimonials': testimonials, 'form': form})
 
-    def post(self , request):
-        
+    def post(self, request):
+        form = TestimonialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'test_app/testimonial.html', {'form': form, 'success': True})
+        testimonials = Testimonial.objects.all()
+        return render(request, 'test_app/testimonial.html', {'testimonials': testimonials, 'form': form})
 
-        return render(request , 'test_app/index.html')
-
-
-
-
-
-
-class  courses(views.View):
-    def get(self , request):
-        course_filter = forms.course_filter()
-        datas = {}
-        course_obj = models.course.objects.all()
-        datas['courses'] = course_obj
-        datas['price_filter'] = course_filter
-
-        return render(request , 'test_app/courses.html' , datas )  
-
-
-
-    def post(self , request):
-
-        course_filter = forms.course_filter(request.POST)
-        datas = {}
-        datas['price_filter'] = course_filter
-        if(course_filter.is_valid()):
-            price = course_filter.cleaned_data['price']
-            course_obj = models.course.objects.filter(price=price)
-        else :
-            course_obj = models.course.objects.all()
-        datas['courses'] = course_obj
-        return render(request , 'test_app/courses.html' , datas )  
-
-
-
-
-
-
-class  contact(views.View):
-    def get(self , request):
-
-
-       return render(request , 'test_app/contact.html')  
-
-
-
-    def post(self , request):
-        
-
-        return render(request , 'test_app/courses.html')
-
-
-
-
-
-
+class NotFoundView(View):
+    def get(self, request):
+        return render(request, 'test_app/404.html')

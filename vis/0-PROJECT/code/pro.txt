@@ -1,0 +1,19 @@
+
+
+
+
+
+
+
+
+python function that get input  args path file : 
+picture_path , 
+list_of_dataset_picture_paths 
+
+then delete 10 percents of picture_path from up ,10 percent from buttom , 10 percent from left side and 10 percent from right side . 
+then calculate 3 parameters that are middle and norm2 and average of 3 channel rgb of the picture , 
+then compare this 3 parametes with all of the pictures in given datatset and get the points to similarity . 
+then print the points by order and write the most similar one and open 3 most similar picture and original one . 
+just use opencv for that not any more 
+
+

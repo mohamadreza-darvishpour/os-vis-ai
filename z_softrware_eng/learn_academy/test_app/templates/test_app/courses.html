@@ -144,14 +144,12 @@
     </div>
     <!-- Categories Start -->
 
-    <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+    <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
         <form action="{%url 'courses' %}" method='POST'>
-            {% csrf_token %} {{price_filter}}
+            
 
-            <div class="col-12">
-                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-            </div>
-            <!-- <div class="row g-3">
+            
+            <div class="row g-3">
                 <div class="col-md-6">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="name" placeholder="Your Name">
@@ -176,7 +174,10 @@
                         <label for="message">Message</label>
                     </div>
                 </div>
-            </div> -->
+                <div class="col-12">
+                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                </div>
+            </div>
 
         </form>
     </div>
@@ -193,7 +194,8 @@
 
 
                 <!-- ************************** one popular product ############### -->
-                {% for course in courses %}
+    <!-- item to queryf                 -->
+<!-- -->
 
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="course-item bg-light">
@@ -224,7 +226,6 @@
                     </div>
                 </div>
 
-                {% endfor %}
 
                 <!-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="course-item bg-light">
@@ -285,7 +286,6 @@
             </div>
         </div>
     </div>
-    <!-- Courses End -->
 
 
     <!-- Testimonial Start -->
@@ -296,7 +296,10 @@
                 <h1 class="mb-5">Our Students Say!</h1>
             </div>
             <div class="owl-carousel testimonial-carousel position-relative">
-                <div class="testimonial-item text-center">
+       
+<!-- item to query -->
+
+         <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="{% static 'test_app/img/testimonial-1.jpg'  %}" style="width: 80px; height: 80px;">
                     <h5 class="mb-0">Client Name</h5>
                     <p>Profession</p>
@@ -304,30 +307,10 @@
                         <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
                     </div>
                 </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{% static 'test_app/img/testimonial-2.jpg'   %}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{% static 'test_app/img/testimonial-3.jpg' %}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{% static 'test_app/img/testimonial-4.jpg' %}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
+
+
+<!-- end of item  -->
+
             </div>
         </div>
     </div>
