@@ -23,12 +23,36 @@ class IndexView(View):
 
 class AboutView(View):
     def get(self, request):
-        return render(request, 'test_app/about.html')
+        categories = models.categories.objects.all()
+        courses = models.Course.objects.all()
+        lecturer = models.lecturer.objects.all()
+        messages = models.message.objects.all()
+        datas = {
+            'page_name' : 'about',
+            'categories' : categories ,
+            'courses': courses , 
+            'lecturers' : lecturer ,
+            'messages' : messages   ,
+        }
+        return render(request, 'test_app/about.html' , datas)
 
+from . import forms
 class ContactView(View):
     def get(self, request):
-        form = ContactForm()
-        return render(request, 'test_app/contact.html', {'form': form})
+        form = forms.ContactForm()
+        categories = models.categories.objects.all()
+        courses = models.Course.objects.all()
+        lecturer = models.lecturer.objects.all()
+        messages = models.message.objects.all()
+        datas = {
+            'page_name' : 'contact',
+            'categories' : categories ,
+            'courses': courses , 
+            'lecturers' : lecturer ,
+            'messages' : messages   ,
+            'form'  : form , 
+        }
+        return render(request, 'test_app/contact.html', datas)
 
     def post(self, request):
         form = ContactForm(request.POST)
@@ -39,19 +63,48 @@ class ContactView(View):
 
 class CoursesView(View):
     def get(self, request):
-        courses = Course.objects.all()
-        return render(request, 'test_app/courses.html', {'courses': courses})
+        categories = models.categories.objects.all()
+        courses = models.Course.objects.all()
+        lecturer = models.lecturer.objects.all()
+        messages = models.message.objects.all()
+        datas = {
+            'page_name' : 'courses',
+            'categories' : categories ,
+            'courses': courses , 
+            'lecturers' : lecturer ,
+            'messages' : messages   ,
+        }
+        return render(request, 'test_app/courses.html', datas)
 
 class TeamView(View):
     def get(self, request):
-        team_members = TeamMember.objects.all()
-        return render(request, 'test_app/team.html', {'team_members': team_members})
+        categories = models.categories.objects.all()
+        courses = models.Course.objects.all()
+        lecturer = models.lecturer.objects.all()
+        messages = models.message.objects.all()
+        datas = {
+            'page_name' : 'team',
+            'categories' : categories ,
+            'courses': courses , 
+            'lecturers' : lecturer ,
+            'messages' : messages   ,
+        }
+        return render(request, 'test_app/team.html', datas)
 
 class TestimonialView(View):
     def get(self, request):
-        testimonials = Testimonial.objects.all()
-        form = TestimonialForm()
-        return render(request, 'test_app/testimonial.html', {'testimonials': testimonials, 'form': form})
+        categories = models.categories.objects.all()
+        courses = models.Course.objects.all()
+        lecturer = models.lecturer.objects.all()
+        messages = models.message.objects.all()
+        datas = {
+            'page_name' : 'testimonial',
+            'categories' : categories ,
+            'courses': courses , 
+            'lecturers' : lecturer ,
+            'messages' : messages   ,
+        }
+        return render(request, 'test_app/testimonial.html',datas)
 
     def post(self, request):
         form = TestimonialForm(request.POST)
