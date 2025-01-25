@@ -52,7 +52,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{%   url 'index'   %}" class="nav-item nav-link active">خانه</a>
+                <a href="{%   url 'index'   %}" class="nav-item nav-link {%if 'index' in page_name %}active{%endif%}">خانه</a>
                 <a href="{%   url 'about'   %}" class="nav-item nav-link">درباره</a>
                 <a href="{%   url 'courses'   %}" class="nav-item nav-link">دوره ها</a>
                 <a href="{%   url 'team'   %}" class="nav-item nav-link">تیم ما</a>

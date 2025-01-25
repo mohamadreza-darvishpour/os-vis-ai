@@ -6,12 +6,18 @@ from . import models
 
 class IndexView(View):
     def get(self, request):
+    
         categories = models.categories.objects.all()
         courses = models.Course.objects.all()
+        lecturer = models.lecturer.objects.all()
+        messages = models.message.objects.all()
         
         datas = {
+            'page_name' : 'index',
             'categories' : categories ,
             'courses': courses , 
+            'lecturers' : lecturer ,
+            'messages' : messages   ,
         }
         return render(request, 'test_app/index.html', datas)
 

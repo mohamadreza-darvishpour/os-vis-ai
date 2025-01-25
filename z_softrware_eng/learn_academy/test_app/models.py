@@ -1,11 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class message(models.Model):
+    name = models.CharField(max_length=200, verbose_name='name')
+    level = models.CharField(max_length=200, verbose_name='level')
+    picture = models.ImageField(upload_to='message_pic' ,verbose_name='picture')
+    message = models.TextField(verbose_name='message')
 
 class categories(models.Model):
     title = models.CharField(max_length=200, verbose_name='نام')
     number = models.IntegerField(verbose_name='تعداد')  
     picture = models.ImageField(upload_to='category_pic' ,verbose_name='عکس دسته بندی')
+
+
+
+class lecturer(models.Model):
+    name = models.CharField(max_length=200, verbose_name='name')
+    category = models.CharField(max_length=200, verbose_name='lecture_name')
+    picture = models.ImageField(upload_to='lecturer_pic' ,verbose_name='picture')
+
+
 
 class Course(models.Model):
     title = models.CharField(null=True , blank=True ,max_length=200)
