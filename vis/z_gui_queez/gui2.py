@@ -130,8 +130,8 @@ class MainWindow(QMainWindow):
         transforms = [
             ("Crop Half", self.crop_half, []),
             ("Rotate", self.rotate_image, [{'name': 'Angle', 'min': 0, 'max': 360}]),
-            ("Resize", self.resize_image, [{'name': 'Percentage', 'min': 1, 'max': 200}])
-        ]
+            ("Resize", self.resize_image, [{'name': 'Percentage', 'min': 1, 'max': 200}]),
+            ("Sobel Filter", self.sobel_filter, [{'name': 'Kernel Size', 'min': 1, 'max': 7, 'default': 3, 'step': 2}])        ]
 
         for name, func, params in transforms:
             tab = ImageTab(func, params, self)
@@ -166,6 +166,29 @@ class MainWindow(QMainWindow):
         width = int(img.shape[1] * percent / 100)
         height = int(img.shape[0] * percent / 100)
         return cv2.resize(img, (width, height))
+
+
+
+    def sobel_filter(self, img, ksize):
+        # Add this method to the MainWindow class:
+        # Ensure kernel size is odd and within valid range
+        ksize = max(1, min(7, ksize))
+        ksize = ksize if ksize % 2 == 1 else ksize + 1
+        
+        # Convert to grayscale
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        
+        # Calculate Sobel gradients
+        sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=ksize)
+        sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=ksize)
+        
+        # Convert to absolute values and combine
+        abs_sobelx = cv2.convertScaleAbs(sobelx)
+        abs_sobely = cv2.convertScaleAbs(sobely)
+        combined = cv2.addWeighted(abs_sobelx, 0.5, abs_sobely, 0.5, 0)
+        
+        # Convert back to 3-channel for display
+        return cv2.cvtColor(combined, cv2.COLOR_GRAY2BGR)
 
 
 if __name__ == "__main__":
