@@ -1,0 +1,34 @@
+{%  load static   %}
+ 
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>{%  block title %}{%  endblock title %}</title>
+        <!--                load all header links by include                -->
+        {%  include 'additional/header_links.html'    %}
+
+        <!--                       a block for additional links                       -->
+        {% block header_links  %}{%    endblock header_links %}
+    </head>
+
+    <body>
+
+        <!--            load header navbar  part by include tag.                -->
+        {%  include   'additional/main_navbar.html'   %}
+
+        <!--                       a block for another part of body except header nav and footer nav .                        -->
+        {% block content %}{%  endblock content %}
+
+        <!--                   footer,copyright, back to top part load by include tag .                    -->
+        {%  include   'additional/footer_navbar.html'   %}
+
+
+    <!--                load footer links like js files by include                 -->
+    {%  include 'additional/footer_links.html'   %}
+    </body>
+
+</html>

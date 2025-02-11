@@ -1,0 +1,177 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }} تسویه حساب {% endblock %}
+
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'index' %}">خانه</a>
+                            <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                <use xlink:href="{% static 'images/sprite.svg' %}#arrow-rounded-right-6x9"></use>
+                            </svg>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'cart' %}">سبد خرید</a>
+                            <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                <use xlink:href="{% static 'images/sprite.svg' %}#arrow-rounded-right-6x9"></use>
+                            </svg>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">تسویه</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>تسویه</h1>
+            </div>
+        </div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="checkout block">
+            <div class="container">
+                <div class="row">
+                    {% if not user.is_authenticated %}
+                        <div class="col-12 mb-3">
+                            <div class="alert alert-lg alert-primary">
+                                حساب کاربری دارید؟ <a href="{% url 'login' %}">وارد حساب خود شوید</a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="col-10 col-lg-6 col-xl-6">
+                        <div class="card mb-lg-0">
+                            <div class="card-body">
+                                <h3 class="card-title">جزئیات پرداخت</h3>
+                                {% for field in form %}
+                                    <div class="form-group">
+                                        {{ field.label_tag }}
+                                        {{ field }}
+                                        {% if field.help_text %}
+                                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                                        {% endif %}
+                                        {% for error in field.errors %}
+                                            <small class="form-text text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                                
+                                {% if not user.is_authenticated %}
+                                <div class="form-check">
+                                    <span class="form-check-input input-check">
+                                        <span class="input-check__body">
+                                            <input class="input-check__input" type="checkbox" id="checkout-create-account"> 
+                                            <span class="input-check__box"></span>
+                                            <svg class="input-check__icon" width="9px" height="7px">
+                                                <use xlink:href="{% static 'images/sprite.svg' %}#check-9x7"></use>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <label class="form-check-label" for="checkout-create-account">ساخت حساب کاربری؟</label>
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="card-divider"></div>
+                            <div class="card-body">
+                                <h3 class="card-title">جزئیات حمل و نقل</h3>
+                                <div class="form-group">
+                                    <label for="checkout-comment">توضیحات سفارش <span class="text-muted">(اختیاری)</span></label>
+                                    <textarea id="checkout-comment" class="form-control" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 col-xl-6 mt-4 mt-lg-0">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <h3 class="card-title">سفارش شما</h3>
+                                <table class="checkout__totals">
+                                    <thead class="checkout__totals-header">
+                                        <tr>
+                                            <th>محصول</th>
+                                            <th class="text-right">تعداد</th>
+                                            <th class="text-left">قیمت محصول</th>
+                                            <th class="text-left">تخفیف</th>
+                                            <th>جمع کل</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="checkout__totals-products">
+                                        {% for item in carts %}
+                                        <tr>
+                                            <td class="text-right">
+                                                <a href="{% url 'KalaDetailView' item.product.slug %}">
+                                                    <img style="width: 50px; height: 70px;" src="{{ item.product.pic0.url }}" alt="{{ item.product.name }}" title="{{ item.product.name }}" class="img-thumbnail">
+                                                </a>
+                                                <br/>
+                                                <a href="{% url 'KalaDetailView' item.product.slug %}">{{ item.product.name }}</a>
+                                            </td>
+                                            <td class="text-center">{{ item.count }}</td>
+                                            <td class="text-center">{{ item.seller.price }}</td>
+                                            <td class="text-left">
+                                                {% if item.seller.off %}{{ item.seller.off }}{% else %} ندارد {% endif %}
+                                            </td>
+                                            
+                                            <td class="text-left">{{ item.finally_price }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tbody class="checkout__totals-subtotals">
+                                        <tr>
+                                            <th colspan="4">جمع جزء</th>
+                                            <td>{{ totalPrice }} تومان</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4">کپن تخفیف</th>
+                                            <td>{{ coupon }} تومان</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4">حمل و نقل</th>
+                                            <td>{{ sendCost }} تومان</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4">مالیات</th>
+                                            <td>{{ tax }} تومان</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="checkout__totals-footer">
+                                        <tr>
+                                            <th colspan="3">جمع کل</th>
+                                            <td colspan="2">{{ toPay }} تومان</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                
+                                <div class="checkout__agree form-group">
+                                    <div class="form-check">
+                                        <span class="form-check-input input-check">
+                                            <span class="input-check__body">
+                                                <input class="input-check__input" type="checkbox" id="confirm_agree" name="confirm_agree" required onchange="document.getElementById('button-confirm').disabled = !this.checked;"> 
+                                                <span class="input-check__box"></span>
+                                                <svg class="input-check__icon" width="9px" height="7px">
+                                                    <use xlink:href="{% static 'images/sprite.svg' %}#check-9x7"></use>
+                                                </svg>
+                                            </span>
+                                        </span>
+                                        <label class="form-check-label" for="confirm_agree">من <a target="_blank" href="{% url 'terms_and_conditions' %}">قوانین و مقررات</a> را خوانده و موافقم *</label>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" name="GoToPay" class="btn btn-primary btn-xl btn-block" id="button-confirm" disabled>ثبت سفارش</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

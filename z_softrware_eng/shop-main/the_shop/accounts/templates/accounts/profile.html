@@ -1,0 +1,39 @@
+{% extends 'additional/base.html'  %}
+{%  load static   %}
+
+        {% block title %} profile {% endblock title %}
+
+        {%  block content   %}
+        <p>n</p>
+        <p>n</p>
+        <p>n</p>
+        <p>n</p>
+        <p><br><h3>username :  {{username}}</h3></p>
+        <div >
+            <img src="{{profile_picture.url}}"  alt="not_found_pic">
+        </div>
+        <p><br></p>
+        <div>
+        <form action="{%  url 'profile' %}" method="POST">
+            {%  csrf_token   %}
+
+            {{form.label}}
+            {{form}}
+            {{form.errors}}
+            <!-- <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required> -->
+        
+            <input type="submit" value="Submit">
+        </form>
+        </div>
+        
+        <p><br>anything</p>
+        
+        {%  endblock content  %}
+        

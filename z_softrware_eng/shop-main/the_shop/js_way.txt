@@ -1,0 +1,1124 @@
+client side 
+first name moca 
+then long script 
+its not java , just name javascript
+ecma street. 1, 2, 3,6,7 .. 
+-----
+any browser has ngine like chakra for microsoft edg and another for 
+fire fox > spider m.. , chrome and ... 
+js motor uses the ecma script ES 2,3,4....  to run js code . 
+bootstrap and another used babble? to change all to es5 
+
+need to learn es 6 and more . 
+es is standard version of js , sometimes just names . 
+
+
+
+#ad js code to html 
+1
+use script tag . 
+     
+<script>
+    alert("alert uses. ")
+</script>
+ ??jot usefull 
+
+
+ 2 
+ address of js file like : 
+   
+<script src="./feature.js">
+</script>
+
+--------
+ in console part of inspect part of any broser can add 
+ js command and run . 
+
+
+any browser has ngine to run js codes . 
+
+
+
+
+
+epis 3 
+
+//log to console 
+//log is report or part we want to show . 
+console.log("whats the console.log ? ");
+// .log  prints that message in js tterminal console. 
+// console.log is so important. 
+
+console.log(98234729)
+console.log(true);
+var var1 = "hey man " ;
+console.log(var1); 
+
+
+
+// send array by log . 
+console.log([3,4,5,6]); 
+
+// send object type in js . 
+console.log({a:83 , c:829834});   // {}  is imp 
+
+
+//show table in console of browser . 
+console.table({a:8 , b :"new "})
+
+//errors in cosole 
+console.error("new error")
+
+console.clear(); 
+
+console.warn("little warning .")
+
+
+//simple time using . 
+console.time("start 383");
+console.log("done\n")
+console.log("done\n")
+console.log("done\n")
+console.log("done\n")
+console.log("done\n")
+console.log("done\n")
+console.timeEnd("start 383");
+
+
+
+
+
+
+/*
+some var types . 
+
+
+
+variables in js 
+keys in variables .      var , let , const ; //let and const newly added. 
+
+var name = " new name" ; 
+name = "changed name" ; 
+console.log(name)
+
+
+intialize 
+var  newvar ; 
+console.log(newvar)        //undefined error. 
+
+
+
+var writes .     letters , number , _ , $  
+when use $ has conflict with jquery. , and more safety issues. 
+
+
+
+
+// let 
+let color1 ; 
+color1 = "blue yellow";
+color1 = "red" ;
+
+
+//const 
+const color3 = 'orange' ; 
+color3 = 'dead color' ;      //caught error because const var doesn't chnage directly. 
+
+
+a way to change const type in js 
+
+const home =  { 
+    area :833 , 
+    zipc :23
+}
+home.area = 8982923384; 
+home.zipc = 474; 
+console.log (home);
+
+const numbs = [3,4,5 ] 
+numbs.push(83) 
+console.log(numbs);
+
+*/
+
+
+
+
+
+//data types in js 
+
+//data types   >    1.Premetive types  2.Reference types 
+
+//premetive :   define and assign . simple type.   : string , number,null,undefined,symbol(ec6)
+//references : point to them not define . : objects > array,object
+
+
+//string 
+const name = ' this is string ' ; 
+console.log(typeof name)
+//typeof return type of name . 
+
+const height = 83 
+console.log(typeof height); 
+
+
+const ans = false ;  
+console.log(typeof ans);
+
+
+let var23 = null ; 
+console.log(typeof var23)     
+//its important that this return object type not noll type . 
+
+
+
+let und2 ; 
+console.log(typeof und2);
+
+//symbole  (ec6) 
+const sym = Symbol()
+// symbol types has own id in js . 
+console.log(typeof sym)
+
+
+//array
+const rains = ['d1', 'd2'] 
+console.log(typeof rains);
+
+
+//object 
+const space = {
+    wet : true, 
+    dry: false, 
+}
+console.log(typeof space)
+
+
+
+
+
+let dem ; 
+dem  = 838 ; 
+//to change it  
+dem = String(dem)
+console.log(dem);
+console.log(typeof dem) 
+console.log(dem.length);    // llength just use on string 
+
+
+let den ;
+den =  String(48-89372);
+console.log(den);
+console.log(typeof den )
+
+date in js 
+let datetime = new Date() 
+console.log(datetime); 
+console.log(typeof(datetime)) 
+console.log(typeof String(datetime));
+
+
+
+change by .toString(); 
+let var8 = 832 ;
+var8 = var8.toString()
+console.log(typeof var8);
+
+***********   string to number     
+
+let ned = "83.7" 
+ned = Number(ned);
+console.log(typeof ned ) ;
+
+
+*********************     
+boolean to number    true = 1    false = 0   null = 0    
+
+
+let val = Number('slkjfdl');     
+console.log(val)    // nan .   not a number . 
+
+array to number      > nan again 
+
+change string to number   by  parseInt  , parseFloat 
+
+ 
+number after . in floats by .toFixed(numbers) 
+let noom = 833.8929374  ;
+console.log(noom.toFixed(3));
+
+
+
+
+
+
+
+// math functions 
+
+const n1 = 38;  
+const n2 = 839; 
+let su ; 
+
+su = n1 * n2 / n1 +n1 -n2 %n1
+su  = Math.PI;
+su = Math.E;
+su = Math.round(82938.982347)
+su = Math.ceil(82938.982347)  //round increase
+su = Math.floor(82938.982347) // round decrease
+su = Math.sqrt(82938.982347) // sqrt
+su = Math.abs(82938.982347) // positive of that 
+su = Math.pow(82938.982347) // power
+su = Math.min(33,4,5,6,7) // min or max 
+su = Math.random();   //a number between 0 to 1 
+//how to change random between to amount ? 
+
+
+console.log(su)
+
+
+
+
+
+
+
+
+
+
+// //strings in js 
+// let fname , lname ,age ; 
+// fname = 'one ' 
+// lname=  'two '  
+// age = 83 
+// console.log ( fname + ' ___  ' +lname)
+ 
+// // show strings using back tick .    
+// //*************    ec 6       back tick
+// let fin = ` usingn back tick to show first = ${fname} and lastname = ${lname}`; 
+// console.log(fin)
+
+// // /string functions  
+// let str = "any"   
+
+// str.length ; 
+// str = str.concat('_' , lname )    
+// str.toUpperCase() 
+// str.toUpperCase() 
+// str[2]   // read by index 
+// str.indexOf('l')  // return index of char 
+// str.charAt('2')     // find by index 
+// str.charAt(fname.length-1)    // find the last 
+// str.substring(0 , 7)    //return index of 0 to 6 
+// str.slice(0 , 8 )   // like substring  // if bigger than amount return all . 
+// str.split('-')     // return splitted strings by the '-' and return obj . 
+// str.includes("an")    // find string part in string .   
+
+
+
+
+
+
+
+// arrays in js 
+let arr = [ 3,4,'lskd', {a:8} , 'k' ] 
+arr.length  
+Array.isArray(]3,4,5])   //check is array or not . 
+arr[3]   // find by index 
+arr[1] = 3932 ; 
+arr.indexOf(3932);     // find index of amount 
+arr.push(83)   //add to end 
+arr.unshift(83)   //add to start 
+arr.pop() 
+arr.shift()   // pop from start 
+arr.splice(1,8)   // remove form start index to end 
+arr.reverse()  
+arr.concat("lsdkf")    
+arr.sort();     // alphabetically. 
+//use the compare function 
+arr.sort(function(x,y){
+    return x-y;
+})
+//use the compare function 
+arr.sort(function(x,y){
+    return y-x ; 
+})
+
+
+
+
+// if    , ==  
+let id = 83 ; 
+if(id  == 3){
+    console.log(id);
+}else{
+    console.log("no")
+}
+
+// ===     >compare type and value too.  . !== , != , ....
+let dd = 8; 
+if(dd === '8'){
+    console.log('type and amount equels')
+} else {
+    console.log("type or amount not equals. " )
+}
+
+
+// check definitions of variables.
+let nonval ; 
+if (nonval){
+    console.log('has val');
+}else {
+    console.log("hasn't  val");
+};
+
+if (typeof noval2 =='undefined'){
+    console.log(' undefined yet')
+}else {
+    console.log("defined.")
+}
+
+
+// let fi = 7 ; 
+// if (fi>=7) ...dd.
+
+
+const day = 'sat' 
+if(day ==='sat'){
+    console.log('sat');
+}else if(day=='mon'){
+    console.log('not');
+} else {
+    console.log('any');
+};
+
+//logics 
+// && > and         || > or  
+
+
+
+// simple brief 2 conditional if . 
+console.log(day==='sat' ? 'first func' : 'second func');  
+// 
+
+// switch 
+const tits = 'pink' ; 
+switch(tits){
+    case 'red':
+        console.log('red')
+    case 'pink':
+        break
+    default:
+        break;
+}
+
+
+
+
+
+
+
+
+
+// loop in js 
+for loop 
+for (let i = 0 ; i<4 ; i++){
+    console.log(i);
+}
+
+// while loop   
+let m =0 ; 
+while(m<6){
+    console.log('    ' , m);
+    m++;
+}
+
+
+// do while 
+let n = 0;
+do{
+    console.log('do while'); 
+    n++
+}
+while(n<5)
+
+
+let pens = [1 ,5 ,7 ,3] 
+pens.forEach(function(any){
+    console.log(any)
+})
+
+
+
+map 
+
+let dany = [
+    {a:1},
+    {a:2},
+]
+const ids = dany.map(function(the_item){
+    return the_item.a ;
+})
+
+console.log(ids)
+
+
+let bany = {
+    a:1,
+    b:2,
+}
+for(let entry in bany){
+    console.log(`    ${entry}   =    ${bany[entry]}`)
+}
+
+
+
+
+
+
+map     > like key value tables.    (ec6) 
+let lamp = new Map() 
+
+
+lamp.set('one' , {
+    a:1 , 
+    b:2,
+    c:3
+})
+
+lamp.set('two', {
+    m:4 , 
+    n:7,
+})
+could add functions to map too. 
+lamp.set('three', function(){console.log("func from Map.")})
+console.log(lamp.get('three')())
+lamp.size
+lamp.has('key')    // has or hasn't key 
+lamp.delete('key') 
+lamp.clear()   //clear entire Map. 
+
+
+
+
+about scopes .     (variables) 
+
+let a = 8 
+var b = 9 
+const c = 10 
+these params are without change in functions vars . 
+but *var* changes in if conditions and for loop and every where. 
+var type varaiables could change. 
+if(true){
+    b = 22;
+}
+console.log(b)
+
+
+
+
+
+//Set   
+// stores """unique""" values of any type. 
+const dataset = new Set() 
+dataset.add(100)
+dataset.add(true)
+dataset.add('one')
+dataset.add('one') 
+
+const set2 = new Set([1,2,3,4,5]) 
+set2.size 
+dataset.has('100')
+
+// important that object types arent '===' when are the same key and values. 
+// js compares obj by references. 
+console.log( {a:1} === {a:1} );
+console.log( dataset);
+
+
+
+
+
+
+
+
+
+//Destructuring    
+// ec6 
+//modules 
+let a,b ; 
+[a,b] = [100, 200] ;
+
+
+[m , n , p , ...var1] = [1 , 2 ,33 , 4 , 8 ,9 ,10];
+// m , n, p get one value and another has gotten to var1 . 
+// its useful in js . 
+// ...last_var   must be last one . ***** 
+({a,b} = { a:100 , b:200 , c:300 , d : 400 });
+// a, b just got 100 , 200 , anothers isn't useful. 
+
+
+({a,b,...anothers} = { a:100 , b:200 , c:300 , d : 400 })
+// must be in paranthese.
+console.log(anothers)
+
+
+//*************** 
+//   array destructuring. 
+//another useful destructuring . 
+let nums  = ['one' , 'two' , 'three' ]; 
+let [num1 , num2 , num3 ] = nums 
+console.log(num1 , num2 , num3 ) 
+
+
+//object destructuring    ***************  important. 
+// in ec5 
+var tale = {
+    item1 : 2, 
+    item2 : 3, 
+};
+var tale2 = {
+    ent1 : tale.item1 , 
+    ent2 : tale.item2 , 
+};
+
+// ec6 
+var carpet = {
+    col : "red", 
+    area : 12,
+}
+var {new_col , new_area} = carpet ; // useful but not completed. 
+
+
+
+
+
+
+
+
+
+
+// find and filter . 
+
+let pens  = [
+    {color:   'red'   ,   width :  3    , },
+    {color:   'blue'   ,   width : 4     , },
+    {color:   'pink'   ,   width :  5    , },
+    {color:    'green'  ,   width :  6    , },
+    {color:    'yellow'  ,   width :  5    , },
+]
+
+//filter  return objects. 
+// how to filter pens that return pens wwith specific width . 
+var result = pens.filter(function(item){
+    return item.width == 5 
+})
+// console.log(result)
+
+//map  return comparisons. just true false . 
+// how to filter pens that return pens wwith specific width . 
+var result = pens.map(function(item){
+    return item.width == 5 
+})
+// console.log(result)
+
+
+//find  . 
+// how to find  pens that return just one pen if exists.  
+var result = pens.find(function(item){
+    return item.width == 5 
+})
+console.log(result)
+
+
+
+
+
+in feature.js: 
+//******************** 
+// use extension live server to open project in port by protocol maybe. 
+
+
+// modules in javascripts. 
+// divide big project to more little modules . 
+// important for vue.js and react . 
+// export to send vars 
+// export , import worked in ec6. 
+export var sent_var = 2222 ;  
+
+// use type in script tag in html file, type ="module"
+then in feature2.js 
+import { sent_var } from "./feature.js";
+
+console.log( sent_var)
+//any type could export and import. 
+export should not same in variable name ******
+
+
+
+// alias and default. 
+
+var one =  1 ; var two=2 ; var three = 3  ; 
+export {one as first , two , three} ;
+// import  * as app from './file.js' 
+// how to use them ? 
+// app.object1 , app.fun4 .... 
+export default two ;   // should assigned before this . 
+// if use default not need to use {} when import . 
+// **** just important to use just one default . not more . 
+//******** 
+
+
+
+
+
+BOM  browser object model. 
+
+bom
+>frames , history , location , navigator  , document ,screen 
+
+document >: anchors , applets , areas , embeds , forms , image , layers , links 
+
+DOM    document object model . 
+BOM contains DOM . **********************
+window.console.log() = console.log() 
+window.alert() 
+type of input in js . 
+var input = prompt(); 
+alert(input) 
+
+confirm 
+if(confirm("pos or neg?")){
+    console.log('pos')      
+} else {
+    console.log('neg')
+}
+
+
+outer window height.
+let var1 = window.outerHeight; 
+let var1 = window.outerWidth; 
+let var1 = window.innerHeight; 
+let var1 = window.innerWidth; 
+
+let var1 = window.scrollY
+let var1 = window.scrollX
+console.log(var1)
+
+
+
+
+
+BOM 
+location 
+let dat = window.location $
+we can use all items in location , info about host name href port and .... 
+let dat = window.location.hostname    // .port , .href , 
+let dat = window.location.search    // any searvh in url after '? '
+window.location.href = 'www.lakfj...'   // for redirect. 
+var data ; 
+data = window.history.length;
+navigator object.  its not exact for safety. 
+data = window.navigator;
+data = window.navigator.appName;   // for safety is same for all 
+data = window.navigator.appVersion; // ...
+data = window.navigator.userAgent;  // ...
+data = window.navigator.vendor;    // ....
+console.log(data)
+
+
+
+
+
+
+
+
+
+
+// DOM     >   document object model 
+/* 
+
+document > root element(html) 
+root element >  element(head) , element(body) 
+element(head) > element(title) > element(Text) 
+element(body)> element(a) , element(h1) 
+element(a) > attribute(href)  
+element ( a) > Text("my link") 
+element(h1) > Text(my header) 
+*/
+
+// browser makes tree of nodes and elements. 
+//  js could change that tree. 
+let doc   // use for document instances. 
+doc = document.all[2] ; // find by index in docs 
+doc = document.all.length // send tree nodes number i think.
+doc = document.head 
+doc = document.body 
+doc = document.doctype 
+doc = document.URL  
+doc = document.charset 
+doc = document.forms[0]   
+doc = document.scripts[0].getAttribute('src') 
+//every thing in html file could accessed by js . 
+// **************************   
+
+
+
+
+window.console.log('__________\n')
+window.console.log(doc);
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+BOM 
+location 
+let dat = window.location $
+we can use all items in location , info about host name href port and .... 
+let dat = window.location.hostname    // .port , .href , 
+let dat = window.location.search    // any searvh in url after '? '
+window.location.href = 'www.lakfj...'   // for redirect. 
+var data ; 
+data = window.history.length;
+navigator object.  its not exact for safety. 
+data = window.navigator;
+data = window.navigator.appName;   // for safety is same for all 
+data = window.navigator.appVersion; // ...
+data = window.navigator.userAgent;  // ...
+data = window.navigator.vendor;    // ....
+console.log(data)
+
+*/
+
+
+
+
+
+
+
+
+select and change element in DOM . 
+select method > single and multi 
+var item ;   // to use in this section. 
+
+select by id . 
+item = document.getElementById('search_part').classList
+item = document.getElementById('search_part').id
+item = document.getElementById('search_part').className
+item = document.getElementById('search_part')
+item = document.getElementById('search_part')
+
+
+now change styles or any by js  in html . 
+item.style.background = 'aqua'
+item.style.padding = '30px'
+item.style.display = 'none'
+
+now change content by js  in html . 
+item.textContent = "add text by js in html for practise"//just add text maybe ruin the tags. 
+item.innerText = "inner text adds by js in html "  // text content and inner text delete all things and add text in them. 
+item.innerHTML = '<p>  p tag adds tto html by innerhtml in js . </p>'
+
+
+query selector    > more powerful as getelementbyid .
+select with attr , id , ... 
+
+select with query selector by id using '#' : 
+item = document.querySelector('#search_part')
+select with query selector by class using '.'
+item = document.querySelector('.search-area')
+
+select wit q.s  by tag name . 
+it just returns one caused is single selector not multi. 
+item = document.querySelector('div')
+
+item = document.querySelector('div div div div' ) // find div in div in div in div . 
+item = document.querySelector('div a' ) // find div cantains a  
+item.style.border = '5px black line'
+
+
+item = document.querySelector('div:last-child');
+item = document.querySelector('div:first-child');
+item = document.querySelector('div:nth-child(2)');
+item.style.background = 'yellow'
+
+console.log(item)
+
+
+
+
+multi selector.     important.
+let entry ; 
+entry = document.getElementsByClassName('p-group-tag')
+entry[3].style.background = 'orange'
+entry[1].style.background = 'yellow'
+
+get more exactly . 
+entry = document.querySelector('div div').getElementsByClassName('p-group-tag')
+entry[3].style.background = 'orange'
+entry[1].style.background = 'yellow'
+
+multi select by getelementsbytagname 
+entry = document.getElementsByTagName('p')
+entry[3].style.background = 'orange'
+entry[1].style.background = 'yellow'
+
+
+multi select with id , tag , class .... 
+entry = document.querySelectorAll('p.p-group-tag')
+entry = document.querySelectorAll('ul.ul-first li.current-list-item')
+entry[2].style.background = 'orange';
+entry[1].style.background = 'purple';
+iterate in query of js . 
+let number = 400 ; 
+entry.forEach(function(item , index){
+    item.style.background = `#${number}`
+    number += 200 ; 
+})
+
+window.console.log(entry)
+
+
+
+
+
+
+// node , parent , children.
+// any element is a node . 
+let part ; 
+
+
+// child nodes 
+// part = document.querySelector('ul')
+// part = part.childNodes   // line breaks between 'li' tag has known as 'text' when get nodes. 
+
+
+// children 
+part = document.querySelector('ul')
+// part = part.children   // line breaks between 'li' tag has known as 'text' when get nodes. 
+// part[3].style.background = 'yellow'
+// // possible to use children of children . maybe if exists.
+// part = part[3].children  
+// part = part.lastChild 
+// part = part.firstChild 
+
+// just element child. 
+// part = part.firstElementChild   
+// part = part.lastElementChild   
+
+
+
+// count childrens
+// part = part.childElementCount
+// part = part.parentNode   // show parent node 
+// part = part.parentElement.parentElement    // use like chains. 
+// part = part.nextSibling    // next same element 
+// part = part.nextElementSibling  
+part = part.previousElementSibling    
+part = part.previousSibling  
+
+
+console.log(part)
+
+
+
+
+
+
+// how to make element and add to DOM  or anywhere. 
+var temp  ; 
+//create element 
+temp = document.createElement('p')
+let temp2 = document.createElement('p')
+// temp.className = 'added-by-js'
+temp.id = 'id-by-js'
+//get attribute to that.
+temp.setAttribute('title','new-one')
+temp.innerText = 'new-tag-added-append-js'
+//append to that. 
+// temp.appendChild(document.createTextNode('text-node-483495'))
+temp.appendChild(temp2)
+var org = document.querySelector('ul')
+org.appendChild(temp)
+
+console.log(org)
+
+
+
+
+
+//replace and remove elements using js 
+//replace
+let dad , ent , temp ;
+ent = document.querySelector('#to-replace-train')
+temp = ent ; 
+temp.innerText = 'replaced by js ';
+dad  = ent.parentElement 
+dad.replaceChild(temp , ent)
+
+
+//delete or remove 
+temp = document.querySelectorAll('li')
+//remove 
+temp[1].remove() 
+
+//remove a child 
+temp = document.querySelectorAll('li')
+dad = document.querySelector('ul')
+dad.removeChild(temp[0])
+
+console.log(ent)
+
+
+
+
+
+//events in js 
+//hover , click , ... 
+var ent ; 
+// ent = document.querySelector('#search-button')
+// ent.getAttribute('href','#')
+// ent.addEventListener('click' , function(){
+//     console.log('clicked on search button. ')
+// })
+
+
+// use prevent default(by adding 'e' ) to not work like before. unable default manner.
+// ent = document.querySelector('#search-button')
+// ent.getAttribute('href','#')
+// ent.addEventListener('click' , function(e){
+//     console.log('clicked on search button. ');
+
+//     e.preventDefault();
+// })
+
+// add events by functions . 
+// ent  = document.querySelector('#search-button');
+// ent.addEventListener('click' , click_func);
+
+// function click_func(e){
+//     console.log('click registered by function in js . ');
+//     e.preventDefault(); // prevent any time do default works like submit send or anything else. 
+// }
+
+
+// whats 'e' exactly in event listener functions . 
+// notice target  in 'e' , is important 
+// target is the event is doing or done .
+// target is the tag has event on it . 
+ent  = document.querySelector('#search-button');
+ent.addEventListener('click' , click_func);
+
+function click_func(e){
+    console.log('click registered by function in js . ');
+    e.preventDefault(); // prevent any time do default works like submit send or anything else. 
+    let temp ; 
+    temp = e.target ; 
+    temp = e.target.className; 
+    temp = e.type    // type of event.
+    //coordinates events relative to the elements. 
+    temp = e.clientY // y dim in win click dim.
+    temp = e.clientX // x....
+    temp = e.offsetX // x dim in button
+    temp = e.offsetY // Y....
+
+    console.log(temp)   // it shows in console that e is "pointer event" 
+
+}
+
+
+
+
+
+
+//another events on mouse. 
+var temp , butt ; 
+let ent ; 
+function event_type(e){
+    console.log(e.type);
+
+};
+
+butt = document.querySelector('#search-button')
+butt.addEventListener('click' , event_type)
+butt.addEventListener('dbclick' , event_type)
+butt.addEventListener('mousedown' , event_type)
+butt.addEventListener('mouseup' , event_type)
+butt.addEventListener('mouseenter' , event_type)
+butt.addEventListener('mouseleave' , event_type)
+butt.addEventListener('mousemove' , event_type)
+
+
+
+
+
+// events on Keyboard
+let temp ; 
+var ent ; 
+ent = document.querySelector('#input-id')
+function keyboard_event(e){
+    window.console.log(`event type : ${e.type}`)
+
+}
+ent.addEventListener( 'submit' , keyboard_event ) // use for forms .
+
+//events on keyboard
+ent.addEventListener(  'keydown'  , keyboard_event); // any key puss
+ent.addEventListener(  'keyup'  , keyboard_event);
+ent.addEventListener(  'keypress'  , keyboard_event);
+ent.addEventListener(  'focus'  , keyboard_event);   // when click to write in it 
+ent.addEventListener(  'blur'  , keyboard_event);   // exit from focus.
+ent.addEventListener(  'cut'  , keyboard_event);   // cut  input text.
+ent.addEventListener(  'paste'  , keyboard_event);  //past to input
+ent.addEventListener(  'input'  , keyboard_event);   //push any keys. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

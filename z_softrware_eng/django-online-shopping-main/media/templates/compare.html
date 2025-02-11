@@ -1,0 +1,127 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }} مقایسه محصول {% endblock %}
+
+{% block body %}
+		<!-- site__body -->
+		<div class="site__body">
+			<div class="page-header">
+				<div class="page-header__container container">
+					<div class="page-header__breadcrumb">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="{% url 'index' %}">خانه</a>
+									<svg class="breadcrumb-arrow" width="6px" height="9px">
+										<use xlink:href="{% static 'images/sprite.svg' %}' %}#arrow-rounded-right-6x9"></use>
+									</svg>
+								</li>
+								
+								<li class="breadcrumb-item active" aria-current="page">مقایسه</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="page-header__title">
+						<h1>مقایسه</h1></div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="container">
+					<div class="table-responsive">
+						<table class="compare-table">
+							{% if compare %}
+							<tbody>
+								<!-- Product Names -->
+								<tr>
+									<th>محصول</th>
+									{% for item in compare %}
+									<td>
+										<a href="{% url 'KalaDetailView' item.compare.product.slug %}">
+											<img src="{{ item.compare.product.pic0.url }}" alt="{{ item.compare.product.name }}" style=" width: 120px; height: 100px;">
+											<div>{{ item.compare.product.name }}</div>
+										</a>
+									</td>
+									{% endfor %}
+								</tr>
+					
+								<!-- Stock Status -->
+								<tr>
+									<th>موجودی</th>
+									{% for item in compare %}
+										<td>
+											
+											{% if item.details.instock > 0 %}
+												<p><span class="text-success">موجود در انبار</span></p>
+											{% else %}
+												<p><span class="text-danger">ناموجود</span></p>
+											{% endif %}
+										</td>
+									{% endfor %}
+								</tr>
+					
+								<!-- Price -->
+								<tr>
+									<th>قیمت</th>
+									{% for item in compare %}
+									<td>
+										{% if item.details.instock > 0 %}
+											<span>{{ item.details.new_price }} تومان</span>
+										{% else %}
+											<span>ناموجود</span>
+										{% endif %}
+									</td>
+									{% endfor %}
+								</tr>
+
+								<!-- color -->
+								<tr>
+									<th>رنگ</th>
+									{% for item in compare %}
+									<td>{{ item.color|default:"Not Available" }}</td>
+									{% endfor %}
+								</tr>
+								<!-- material -->
+								<tr>
+									<th>جنس</th>
+									{% for item in compare %}
+									<td>{{ item.material|default:"Not Available" }}</td>
+									{% endfor %}
+								</tr>
+								<!-- size -->
+								<tr>
+									<th>اندازه</th>
+									{% for item in compare %}
+									<td>{{ item.size|default:"Not Available" }}</td>
+									{% endfor %}
+								</tr>
+					
+								<!-- Actions -->
+								<tr>
+									<th>عملیات</th>
+									{% for item in compare %}
+									<td>
+										<form method="post">
+											{% csrf_token %}
+										{% if item.details.instock > 0 %}
+										<!-- <input type="hidden" name="product_slug" value="{{ item.product.slug }}">
+										<button class="btn btn-primary">افزودن به سبد</button> -->
+										{% endif %}
+											<input type="hidden" name="product_slug" value="{{ item.compare.product.slug }}">
+											<button type="submit" name="delete" class="btn btn-secondary btn-sm">حذف</button>
+										</form>
+									</td>
+									{% endfor %}
+								</tr>
+							</tbody>
+							{% else %}
+							<center>هیچ مقایسه‌ای برای شما وجود ندارد.</center>
+							{% endif %}
+						</table>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- site__body / end -->
+{% endblock %}
+		
