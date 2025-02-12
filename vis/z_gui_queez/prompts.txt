@@ -1,0 +1,27 @@
+chapter9:morfological_operations( dilation , erosion , grayscale_dilation , grayscale_erosion , 
+openning , closing , hit_or_miss_transformation
+   )
+
+chapter8:segmentation( histogram_based_segmentation , otsu_threshholding_segmentation , 
+renyi_entropy_segmentation , local_adoptive_threshhold , watershed_segmentation , 
+watershed_meyer_segmentation 
+   )
+
+chapter7:frequency_and_spatial_domain( 
+IBPS:ideal_band_pass_filter ,ILPF:ideal_low_pass_filter ,  IHPF:ideal_high_pass_filter , 
+GHPF(gaussian_high_pass_filter , GLPF:gaussian_low_pass_filter,
+BHPF:butterworth_high_pass_filter , BLPF:butterworth_low_pass_filter
+
+)   )
+
+chapter6:affine_transformations(  translation , scaling  )
+
+chapter5:image_enhancement( power_log_transform,power_law(gamma)_transform ,
+CLAHE(contrast_limited_adoptive_histogram_equalization) ,contrast_stretchin,
+ sigmoid_correction , local_contrast_normalization   )
+
+chapter4:spatial_filters( mean_filter,gaussian_filter,median_filter,max_filter,
+min_filter,sobel_filter,prewitt_filter,canny_filter, 
+laplacian_filter , laplacian_of_gausian_filter ,frangi_filter    )
+
+chapter3(    )

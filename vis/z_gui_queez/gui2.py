@@ -123,10 +123,10 @@ class MainWindow(QMainWindow):
 
     def init_ui(self):
         screen = QApplication.primaryScreen().geometry()
-        self.setGeometry(0, 0, screen.width()//2, screen.height())
+        self.setGeometry(0, 0, screen.width()//2, int(screen.height()*(0.9)))
 
         self.tabs = QTabWidget()
-        
+
         transforms = [
             ("Crop Half", self.crop_half, []),
             ("Rotate", self.rotate_image, [{'name': 'Angle', 'min': 0, 'max': 360}]),
@@ -170,7 +170,6 @@ class MainWindow(QMainWindow):
 
 
     def sobel_filter(self, img, ksize):
-        # Add this method to the MainWindow class:
         # Ensure kernel size is odd and within valid range
         ksize = max(1, min(7, ksize))
         ksize = ksize if ksize % 2 == 1 else ksize + 1
