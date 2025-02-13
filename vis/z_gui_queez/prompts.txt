@@ -17,7 +17,7 @@ BHPF:butterworth_high_pass_filter , BLPF:butterworth_low_pass_filter
 chapter6:affine_transformations(  translation , scaling  )
 
 chapter5:image_enhancement( power_log_transform,power_law(gamma)_transform ,
-CLAHE(contrast_limited_adoptive_histogram_equalization) ,contrast_stretchin,
+CLAHE(contrast_limited_adoptive_histogram_equalization) , contrast_stretchin ,
  sigmoid_correction , local_contrast_normalization   )
 
 chapter4:spatial_filters( mean_filter,gaussian_filter,median_filter,max_filter,
@@ -25,3 +25,6 @@ min_filter,sobel_filter,prewitt_filter,canny_filter,
 laplacian_filter , laplacian_of_gausian_filter ,frangi_filter    )
 
 chapter3(    )
+
+
+_________________________________________________________________
